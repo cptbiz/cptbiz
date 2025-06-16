@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoSol - Soluções Solares Modernas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Aplica a fonte Inter em todo o site */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Gradiente customizado para destaques */
+        .brand-gradient {
+            background-image: linear-gradient(to right, #FBBF24, #F59E0B);
+        }
+        .brand-gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #FBBF24, #F59E0B);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- ===== HEADER ===== -->
+    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold text-gray-900">
+                    SoSol<span class="text-amber-500">.</span>
+                </a>
+                
+                <!-- Navegação Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#about" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Sobre Nós</a>
+                    <a href="#features" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Diferenciais</a>
+                    <a href="#contact" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Orçamento</a>
+                    <a href="#franchise" class="bg-amber-400 text-white font-semibold px-5 py-2 rounded-lg hover:bg-amber-500 transition-all duration-300 shadow-sm">Seja um Franqueado</a>
+                </nav>
+                
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-button" class="md:hidden">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white">
+            <a href="#about" class="block py-2 text-gray-600 hover:text-amber-500">Sobre Nós</a>
+            <a href="#features" class="block py-2 text-gray-600 hover:text-amber-500">Diferenciais</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-amber-500">Orçamento</a>
+            <a href="#franchise" class="block mt-4 text-center bg-amber-400 text-white font-semibold px-5 py-2 rounded-lg hover:bg-amber-500 transition-all duration-300 shadow-sm">Seja um Franqueado</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== SEÇÃO HERO ===== -->
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2072&auto=format&fit=crop" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Paineis+Solares';"
+                     alt="[Imagem de painéis solares em um telhado]" 
+                     class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gray-900/60"></div>
+            </div>
+            <div class="container mx-auto px-6 relative text-center text-white">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
+                    Descubra a <span class="brand-gradient-text">SoSol</span>
+                </h1>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-200 mb-8">
+                    Somos a maior rede de franquias de energia solar do país, oferecendo soluções inovadoras e sustentáveis.
+                </p>
+                <a href="#contact" class="brand-gradient text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:opacity-90 transition-opacity duration-300 shadow-lg">
+                    Solicite um Orçamento
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO SOBRE NÓS (ABOUT) ===== -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <span class="text-amber-500 font-semibold">QUEM SOMOS</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">Seu parceiro de confiança em energia solar</h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            A SoSol nasceu com o propósito de democratizar o acesso à energia limpa e renovável. Oferecemos soluções completas, do projeto à instalação e manutenção, garantindo economia e sustentabilidade para nossos clientes.
+                        </p>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Nossa Missão</h3>
+                                <p class="text-gray-600">Entregar as melhores soluções em energia solar com excelência, contribuindo para um futuro mais sustentável.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Nossa Visão</h3>
+                                <p class="text-gray-600">Ser referência e líder nacional no setor de energia solar fotovoltaica.</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800">Nossos Valores</h3>
+                                <p class="text-gray-600">Integridade, inovação, compromisso com o cliente e respeito ao meio ambiente.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <img src="https://images.unsplash.com/photo-1584923232230-7359ae53343a?q=80&w=1974&auto=format&fit=crop" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x500/FBBF24/FFFFFF?text=Nossa+Equipe';"
+                             alt="[Equipe de engenheiros discutindo um projeto]" 
+                             class="rounded-2xl shadow-xl w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO DIFERENCIAIS (FEATURES) ===== -->
+        <section id="features" class="py-20 bg-gray-50">
+            <!-- Conteúdo da seção de diferenciais -->
+        </section>
+
+        <!-- ===== SEÇÃO FORMULÁRIO DE CONTATO (CONTACT) ===== -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <span class="text-amber-500 font-semibold">FAÇA UMA SIMULAÇÃO</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Solicite seu Orçamento Gratuito</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600 mt-4">Preencha os campos abaixo e nossa equipe entrará em contato via WhatsApp.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <form id="whatsapp-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Nome -->
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                            <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <!-- Celular -->
+                        <div>
+                            <label for="celular" class="block text-sm font-medium text-gray-700 mb-1">Celular</label>
+                            <input type="tel" id="celular" name="celular" required placeholder="(XX) XXXXX-XXXX" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <!-- UF -->
+                        <div>
+                            <label for="uf" class="block text-sm font-medium text-gray-700 mb-1">UF</label>
+                            <select id="uf" name="uf" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 bg-white">
+                                <option value="">Selecione o Estado</option>
+                                <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <!-- Cidade -->
+                        <div>
+                            <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <!-- Modalidade Tarifária -->
+                        <div>
+                            <label for="modalidade" class="block text-sm font-medium text-gray-700 mb-1">Modalidade Tarifária</label>
+                            <select id="modalidade" name="modalidade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 bg-white">
+                                <option value="">Selecione a modalidade</option>
+                                <option value="Residencial">Residencial</option>
+                                <option value="Comercial">Comercial</option>
+                                <option value="Industrial">Industrial</option>
+                                <option value="Rural">Rural</option>
+                            </select>
+                        </div>
+                        <!-- Propriedade -->
+                        <div>
+                            <label for="propriedade" class="block text-sm font-medium text-gray-700 mb-1">Propriedade</label>
+                            <select id="propriedade" name="propriedade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 bg-white">
+                                <option value="">O imóvel é...</option>
+                                <option value="Própria">Própria</option>
+                                <option value="Alugada">Alugada</option>
+                            </select>
+                        </div>
+                        <!-- Concessionária -->
+                        <div class="md:col-span-2">
+                             <label for="concessionaria" class="block text-sm font-medium text-gray-700 mb-1">Concessionária</label>
+                            <input type="text" id="concessionaria" name="concessionaria" placeholder="Ex: Enel, Coelba, etc." required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <!-- Valor da Conta -->
+                        <div class="md:col-span-2">
+                            <label for="valor_conta" class="block text-sm font-medium text-gray-700 mb-1">Valor da Conta de Energia</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">R$</span>
+                                <input type="number" id="valor_conta" name="valor_conta" step="0.01" required placeholder="250,00" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                            </div>
+                        </div>
+                        <!-- Botão de Envio -->
+                        <div class="md:col-span-2 text-center">
+                            <button type="submit" class="brand-gradient text-gray-900 font-bold w-full md:w-auto px-10 py-4 rounded-lg text-lg hover:opacity-90 transition-opacity duration-300 shadow-lg mt-4">
+                                Enviar para WhatsApp
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO CTA FRANQUIA ===== -->
+        <section id="franchise" class="py-20 bg-gray-100">
+            <!-- Conteúdo da seção de franquia -->
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-gray-900 text-white">
+        <!-- Conteúdo do footer -->
+    </footer>
+
+    <script>
+        // JavaScript para o menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll suave para links âncora e fechar menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Lógica do formulário do WhatsApp
+        const whatsappForm = document.getElementById('whatsapp-form');
+        whatsappForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Número de telefone para o qual a mensagem será enviada (formato internacional sem + ou 00)
+            const phoneNumber = '5585992207070';
+
+            // Coletando os dados do formulário
+            const nome = document.getElementById('nome').value;
+            const celular = document.getElementById('celular').value;
+            const uf = document.getElementById('uf').value;
+            const cidade = document.getElementById('cidade').value;
+            const modalidade = document.getElementById('modalidade').value;
+            const propriedade = document.getElementById('propriedade').value;
+            const concessionaria = document.getElementById('concessionaria').value;
+            const valorConta = document.getElementById('valor_conta').value;
+
+            // Criando a mensagem
+            const message = `Olá, SoSol! Gostaria de um orçamento.
+*Nome:* ${nome}
+*Celular:* ${celular}
+*Local:* ${cidade} - ${uf}
+*Modalidade Tarifária:* ${modalidade}
+*Propriedade:* ${propriedade}
+*Concessionária:* ${concessionaria}
+*Valor da Conta:* R$ ${valorConta}`;
+
+            // Codificando a mensagem para URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Criando o link do WhatsApp
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Abrindo o WhatsApp em uma nova aba
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
