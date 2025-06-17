@@ -1,466 +1,337 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoSol - Soluções em Energia Solar</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Slick Carousel for Partner Logos -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+import React, { useState } from 'react';
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .brand-gradient {
-            background-image: linear-gradient(to right, #FBBF24, #f97316);
-        }
-        .brand-gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(to right, #FBBF24, #f97316);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-in-out;
-        }
-        .slick-slide {
-            margin: 0 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .slick-slide img {
-            height: 50px;
-            width: auto;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-            opacity: 0.7;
-        }
-        .slick-slide:hover img {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
+// Main App component
+const App = () => {
+  // State for form inputs
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
-    <!-- ===== HEADER ===== -->
-    <header class="bg-white/90 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="#" class="text-2xl font-bold text-gray-900 flex items-center">
-                    <img src="https://i.ibb.co/k5zT2yW/9f8695d0-e297-11ed-aa31-4190581ec358.jpg" alt="[Логотип SoSol]" class="h-10 rounded-md">
-                </a>
-                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
-                    <a href="#about" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Sobre Nós</a>
-                    <a href="#services" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Serviços</a>
-                    <a href="#partners" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">Parceiros</a>
-                    <a href="#faq" class="text-gray-600 hover:text-amber-500 transition-colors duration-300">FAQ</a>
-                    <a href="#contact" class="bg-amber-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-amber-600 transition-all duration-300 shadow-sm">Simule sua Economia</a>
-                </nav>
-                <button id="mobile-menu-button" class="lg:hidden">
-                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+  // Navigation items in Portuguese
+  const navItems = [
+    { name: 'Início', href: '#home' },
+    { name: 'Serviços', href: '#services' },
+    { name: 'Sobre Nós', href: '#about' },
+    { name: 'Contato', href: '#contact' },
+  ];
+
+  // Icons for services, defined once to be reused
+  const serviceIcons = {
+    naturalization: <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.5 3-9s-1.343-9-3-9m0 18v-9"></path></svg>,
+    familyReunion: <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M17 20v-9.286C17 11.573 17 10.358 17 9c0-2.906-2.83-4-6-4s-6 1.094-6 4c0 1.358 0 2.573.004 3.714m-.478 1.432l-.356.712A9.006 9.006 0 002 20h15.986z"></path></svg>,
+    rne: <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>,
+    visas: <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H4a3 3 0 00-3 3v4a3 3 0 003 3z"></path></svg>,
+  };
+
+  // Service data organized by language
+  const servicesByLanguage = {
+    pt: {
+      sectionTitle: 'Nossos Serviços',
+      lang: 'Português',
+      services: [
+        { title: 'Naturalização brasileira', description: 'Suporte completo no processo de naturalização para você se tornar um cidadão brasileiro.', icon: serviceIcons.naturalization, linkText: 'Leia mais' },
+        { title: 'Residência por reunião familiar', description: 'Auxílio na obtenção de visto de residência para unir famílias no Brasil com segurança.', icon: serviceIcons.familyReunion, linkText: 'Leia mais' },
+        { title: 'Agendamentos: Emissão / Renovação do RNE', description: 'Cuidamos dos agendamentos para emissão ou renovação do seu Registro Nacional de Estrangeiros.', icon: serviceIcons.rne, linkText: 'Leia mais' },
+        { title: 'Vistos para estrangeiros', description: 'Assessoria completa para diversos tipos de vistos, garantindo sua permanência legal no país.', icon: serviceIcons.visas, linkText: 'Leia mais' },
+      ],
+    },
+    en: {
+      sectionTitle: 'Our Services',
+      lang: 'English',
+      services: [
+        { title: 'Brazilian naturalization', description: 'Full support in the naturalization process for you to become a Brazilian citizen.', icon: serviceIcons.naturalization, linkText: 'Read more' },
+        { title: 'Residence by family reunion', description: 'Assistance in obtaining a residence visa to safely reunite families in Brazil.', icon: serviceIcons.familyReunion, linkText: 'Read more' },
+        { title: 'Appointments: RNE issuance/renewal', description: 'We handle appointments for the issuance or renewal of your Foreigner National Registry.', icon: serviceIcons.rne, linkText: 'Read more' },
+        { title: 'Visas for foreigners', description: 'Complete advisory for various types of visas, ensuring your legal stay in the country.', icon: serviceIcons.visas, linkText: 'Read more' },
+      ],
+    },
+    ru: {
+      sectionTitle: 'Наши услуги',
+      lang: 'Русский',
+      services: [
+        { title: 'Бразильская натурализация', description: 'Полная поддержка в процессе натурализации, чтобы вы стали гражданином Бразилии.', icon: serviceIcons.naturalization, linkText: 'Читать далее' },
+        { title: 'Резиденция по воссоединению семьи', description: 'Помощь в получении вида на жительство для безопасного воссоединения семей в Бразилии.', icon: serviceIcons.familyReunion, linkText: 'Читать далее' },
+        { title: 'Запись: выдача/продление RNE', description: 'Мы занимаемся записью на выдачу или продление вашего Национального реестра иностранцев.', icon: serviceIcons.rne, linkText: 'Читать далее' },
+        { title: 'Визы для иностранцев', description: 'Полные консультации по различным типам виз, обеспечивая ваше законное пребывание в стране.', icon: serviceIcons.visas, linkText: 'Читать далее' },
+      ],
+    },
+    es: {
+      sectionTitle: 'Nuestros Servicios',
+      lang: 'Español',
+      services: [
+        { title: 'Naturalización brasileña', description: 'Soporte completo en el proceso de naturalización para que usted se convierta en ciudadano brasileño.', icon: serviceIcons.naturalization, linkText: 'Leer más' },
+        { title: 'Residencia por reunión familiar', description: 'Asistencia para obtener una visa de residencia para reunir familias en Brasil de forma segura.', icon: serviceIcons.familyReunion, linkText: 'Leer más' },
+        { title: 'Citas: expedición/renovación de RNE', description: 'Gestionamos las citas para la expedición o renovación de su Registro Nacional de Extranjeros.', icon: serviceIcons.rne, linkText: 'Leer más' },
+        { title: 'Visas para extranjeros', description: 'Asesoramiento completo para varios tipos de visas, garantizando su estancia legal en el país.', icon: serviceIcons.visas, linkText: 'Leer más' },
+      ],
+    },
+  };
+  
+  // Function to handle WhatsApp redirection
+  const handleWhatsAppRedirect = () => {
+    const phoneNumber = '5548996400540';
+    const text = `Olá, meu nome é ${name} (Email: ${email}).\n\nMensagem:\n${message}`;
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  };
+
+  // Function to handle Telegram redirection
+  const handleTelegramRedirect = () => {
+    const phoneNumber = '5548996400540'; // Phone number for Telegram link
+    const text = `Olá, meu nome é ${name} (Email: ${email}).\n\nMensagem:\n${message}`;
+    // Note: Telegram direct message links (t.me) don't pre-fill text for phone numbers, 
+    // but this will open a chat with the user if they exist.
+    // The share URL is a more universal fallback.
+    const url = `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  };
+
+  return (
+    <div className="font-sans antialiased text-gray-800 bg-gray-50">
+      {/* Header Section */}
+      <header className="bg-white shadow-sm py-4 fixed top-0 left-0 right-0 z-50">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <a href="#home" className="text-2xl font-bold text-indigo-700 rounded-lg p-2 hover:bg-indigo-50 transition duration-300">
+            Wkinternational Services
+          </a>
+          <nav className="hidden md:flex space-x-6">
+            {navItems.map((item) => (
+              <a key={item.name} href={item.href} className="text-lg font-medium text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-lg transition duration-300 hover:bg-gray-100">
+                {item.name}
+              </a>
+            ))}
+          </nav>
+          <div className="md:hidden">
+            <button className="text-gray-700 hover:text-indigo-600 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section id="home" className="relative bg-gradient-to-r from-indigo-700 to-purple-600 text-white py-24 sm:py-32 mt-16 overflow-hidden">
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
+            Assessoria Completa em Imigração e Naturalização
+          </h1>
+          <p className="text-lg sm:text-xl mb-10 opacity-90 animate-fade-in-up">
+            Soluções eficientes para sua jornada no Brasil.
+          </p>
+          <a href="#contact" className="inline-block bg-white text-indigo-700 hover:bg-indigo-100 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transform transition duration-300 hover:scale-105 animate-bounce-in">
+            Entre em Contato
+          </a>
+        </div>
+        <div className="absolute inset-0 z-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="currentColor" fillOpacity="1" d="M0,192L80,186.7C160,181,320,171,480,186.7C640,203,800,245,960,240C1120,235,1280,181,1360,154.7L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+          </svg>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 sm:py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          {Object.values(servicesByLanguage).map((langGroup, index) => (
+            <div key={index} className="mb-20 last:mb-0">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-gray-900">{langGroup.sectionTitle}</h2>
+                <p className="text-md text-gray-500 mt-2">({langGroup.lang})</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {langGroup.services.map((service, serviceIndex) => (
+                  <div key={serviceIndex} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-2 flex flex-col text-center items-center">
+                    <div className="text-indigo-600 mb-5">{service.icon}</div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-3 h-16 flex items-center">{service.title}</h3>
+                    <p className="text-gray-600 flex-grow mb-4">{service.description}</p>
+                    <a href="#contact" className="mt-auto inline-block text-indigo-600 hover:text-indigo-800 font-semibold transition duration-300 self-center">
+                      {service.linkText} &rarr;
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="py-20 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl font-bold mb-4 text-gray-900">Nossa Missão</h2>
+            <p className="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-16">
+              A Wkinternational Services é formada por uma equipe de profissionais qualificados e dedicados a apoiar estrangeiros em suas jornadas de imigração para o Brasil. Nosso objetivo é fornecer serviços excepcionais que capacitem nossos clientes a prosperar no país.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                {/* Card 1: Experiência */}
+                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-100 text-center hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex justify-center mb-4">
+                        <div className="bg-indigo-100 p-4 rounded-full">
+                            <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                    </div>
+                    <h3 className="text-2xl font-semibold text-gray-800 mb-3">Experiência e Conhecimento</h3>
+                    <p className="text-gray-600">
+                        Com anos de experiência, construímos um profundo conhecimento das complexidades dos processos de imigração para guiar você ao sucesso.
+                    </p>
+                </div>
+                {/* Card 2: Compromisso */}
+                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-100 text-center hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex justify-center mb-4">
+                        <div className="bg-indigo-100 p-4 rounded-full">
+                             <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        </div>
+                    </div>
+                    <h3 className="text-2xl font-semibold text-gray-800 mb-3">Soluções Personalizadas</h3>
+                    <p className="text-gray-600">
+                        Nosso compromisso é oferecer soluções que atendam às suas necessidades exclusivas. O seu sucesso é o nosso sucesso.
+                    </p>
+                </div>
+                {/* Card 3: Integridade */}
+                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-100 text-center hover:shadow-xl transition-shadow duration-300">
+                     <div className="flex justify-center mb-4">
+                        <div className="bg-indigo-100 p-4 rounded-full">
+                           <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    </div>
+                    <h3 className="text-2xl font-semibold text-gray-800 mb-3">Transparência e Resultados</h3>
+                    <p className="text-gray-600">
+                       Trabalhamos com integridade e foco em resultados para garantir que você receba o melhor suporte para suas ambições no Brasil.
+                    </p>
+                </div>
+            </div>
+        </div>
+      </section>
+
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 sm:py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">Entre em Contato</h2>
+          <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Seu nome"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Seu email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Sua mensagem"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                ></textarea>
+              </div>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                <button
+                  onClick={handleWhatsAppRedirect}
+                  className="inline-flex items-center justify-center w-full sm:w-auto py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transform transition duration-300 hover:scale-105"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="mr-2"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.287.468-1.03 3.779 3.824-1.003.478.282z"/></svg>
+                  Enviar via WhatsApp
                 </button>
+                <button
+                  onClick={handleTelegramRedirect}
+                  className="inline-flex items-center justify-center w-full sm:w-auto py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform transition duration-300 hover:scale-105"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="mr-2"><path d="M9.78 18.25l-2.92-2.92c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l3.62 3.62c.39.39 1.02.39 1.41 0l7.25-7.25c.39-.39.39-1.02 0-1.41s-1.02-.39-1.41 0L9.78 18.25zM22 2L2 9.25l7.25 2.19L11.69 19 22 2z"/></svg>
+                  Enviar via Telegram
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-        <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4 bg-white border-t border-gray-200">
-            <a href="#about" class="block py-2 text-gray-600 hover:text-amber-500">Sobre Nós</a>
-            <a href="#services" class="block py-2 text-gray-600 hover:text-amber-500">Serviços</a>
-            <a href="#partners" class="block py-2 text-gray-600 hover:text-amber-500">Parceiros</a>
-            <a href="#faq" class="block py-2 text-gray-600 hover:text-amber-500">FAQ</a>
-            <a href="#contact" class="block mt-4 text-center bg-amber-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-amber-600 transition-all duration-300 shadow-sm">Simule sua Economia</a>
-        </div>
-    </header>
+      </section>
 
-    <main>
-        <!-- ===== HERO ===== -->
-        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
-            <div class="absolute inset-0">
-                <img src="https://images.unsplash.com/photo-1599625343415-224b17a523a4?q=80&w=2070&auto=format&fit=crop" 
-                     onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/000000/FFFFFF?text=Paineis+Solares';"
-                     alt="[Изображение солнечных панелей на крыше]" 
-                     class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gray-900/60"></div>
+      {/* Offices Section */}
+      <section id="offices" className="py-20 sm:py-24 bg-white">
+        <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">Nossos Escritórios</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-700">
+                {/* São Paulo Office */}
+                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-100">
+                    <h3 className="text-2xl font-bold text-indigo-700 mb-4">São Paulo - SP</h3>
+                    <p className="text-lg font-semibold">Avenida Paulista</p>
+                    <p>Av. Paulista, 1471, Sala 317</p>
+                    <p className="mb-4">CEP: 01311-927 - Bela Vista, São Paulo - SP</p>
+                    <div className="space-y-2">
+                        <p className="flex items-center">
+                            <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <a href="tel:+5548988762775" className="hover:underline">+55 (48) 98876-2775</a>
+                        </p>
+                    </div>
+                </div>
+
+                {/* Florianópolis Office */}
+                <div className="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-100">
+                    <h3 className="text-2xl font-bold text-indigo-700 mb-4">Florianópolis - SC</h3>
+                    <p className="text-lg font-semibold">Edifício The Office Avenida</p>
+                    <p>Av. Prof. Othon Gama D'eça, 677, Sala 501</p>
+                    <p className="mb-4">CEP: 88015-240 - Centro, Florianópolis - SC</p>
+                    <div className="space-y-2">
+                        <p className="flex items-center">
+                            <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <a href="tel:+5548996400540" className="hover:underline">+55 (48) 99640-0540</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="container mx-auto px-6 relative text-center text-white">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
-                    Sua <span class="brand-gradient-text">Independência</span> Energética Começa Aqui
-                </h1>
-                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-200 mb-8">
-                    Converta a luz do sol em economia real. Oferecemos soluções completas de energia solar para sua casa, empresa ou agronegócio.
+            <div className="text-center mt-12">
+                 <p className="flex items-center justify-center text-lg">
+                    <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <a href="mailto:wkinternationalservicesbr@gmail.com" className="text-gray-700 hover:underline">wkinternationalservicesbr@gmail.com</a>
                 </p>
-                <a href="#contact" class="brand-gradient text-white font-bold px-8 py-4 rounded-lg text-lg hover:opacity-90 transition-opacity duration-300 shadow-lg">
-                    Calcular Minha Economia
-                </a>
-            </div>
-        </section>
-
-        <!-- ===== ABOUT US ===== -->
-        <section id="about" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1624398195493-241a5d13e34f?q=80&w=1964&auto=format&fit=crop" 
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x500/FBBF24/FFFFFF?text=Equipe+SoSol';"
-                             alt="[Инженер устанавливает солнечную панель]" 
-                             class="rounded-2xl shadow-xl w-full h-auto object-cover">
-                    </div>
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">SoSol - Soluções Solares</h2>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Facilitamos o acesso à energia solar, com o objetivo de gerar maior rentabilidade e economia possível para os nossos clientes. Através de consultoria realizamos a elaboração de projetos, verificamos a viabilidade, executamos a instalação e a homologação do seu sistema de autogeração de energia solar.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed">
-                            Caso não seja viável, verificamos a possibilidade de ingressar ao serviço Aluguel de telhado, também conhecido como de Energy as a Service ou ao mercado livre de energia, onde você poderá adquirir energia por assinatura, sem custo, obra ou investimento! A solução nós temos, e é o Sol!
-                        </p>
-                    </div>
-                </div>
-                <div class="mt-20">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-amber-500 mb-2">Missão</h3>
-                            <p class="text-gray-600">Facilitar o acesso a uma energia mais limpa, sustentável e barata para a sociedade.</p>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-amber-500 mb-2">Visão</h3>
-                            <p class="text-gray-600">Ser referência em soluções energéticas sustentáveis, principalmente para os clientes de baixa tensão, que consomem muita energia e pagam tarifas mais caras.</p>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-amber-500 mb-2">Valores</h3>
-                            <p class="text-gray-600">Prazer em servir, cuidar da nossa gente, aprendizagem contínua, busca da excelência, compromisso e ética.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ===== STATS ===== -->
-        <section id="stats" class="py-20 bg-gray-800 text-white">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div>
-                        <h3 class="text-5xl font-bold brand-gradient-text" data-target="125">0</h3>
-                        <p class="mt-2 text-gray-300">Clientes Satisfeitos</p>
-                    </div>
-                    <div>
-                        <h3 class="text-5xl font-bold brand-gradient-text" data-target="281">0</h3>
-                        <p class="mt-2 text-gray-300">Instalações Realizadas</p>
-                    </div>
-                    <div>
-                        <h3 class="text-5xl font-bold brand-gradient-text" data-target="1375">0</h3>
-                        <p class="mt-2 text-gray-300">kWp Instalados</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ===== SERVICES (UPDATED WITH NEW IMAGES) ===== -->
-        <section id="services" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Serviços</h2>
-                    <p class="max-w-2xl mx-auto text-gray-600 mt-4">Como ajudamos</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-                    <!-- Card 1: Residências -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="p-6 bg-orange-400 text-white text-center font-bold">SOLUÇÕES PARA RESIDÊNCIAS</div>
-                        <img src="https://images.unsplash.com/photo-1621263152328-5252277d9c12?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FBBF24/FFFFFF?text=Residencial';" alt="[Солнечные панели на крыше дома]" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow">
-                           <p class="text-gray-600 text-sm">Reduza sua conta de luz e valorize seu imóvel com um sistema solar projetado para sua casa.</p>
-                        </div>
-                    </div>
-                     <!-- Card 2: Empresas -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="p-6 bg-orange-400 text-white text-center font-bold">SOLUÇÕES PARA EMPRESAS</div>
-                        <img src="https://images.unsplash.com/photo-1600866124403-7b4946ea794e?q=80&w=1974&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FBBF24/FFFFFF?text=Empresarial';" alt="[Солнечные панели на крыше коммерческого здания]" class="w-full h-48 object-cover">
-                         <div class="p-6 flex-grow">
-                           <p class="text-gray-600 text-sm">Diminua custos operacionais e fortaleça a imagem sustentável do seu negócio.</p>
-                        </div>
-                    </div>
-                     <!-- Card 3: Investidores -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="p-6 bg-orange-400 text-white text-center font-bold">SOLUÇÕES PARA INVESTIDORES</div>
-                        <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=2070&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FBBF24/FFFFFF?text=Investidores';" alt="[Большая солнечная электростанция]" class="w-full h-48 object-cover">
-                         <div class="p-6 flex-grow">
-                           <p class="text-gray-600 text-sm">Invista em usinas solares e tenha uma fonte de renda passiva, segura e sustentável.</p>
-                        </div>
-                    </div>
-                    <!-- Card 4: Aluguel de Usina -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="p-6 bg-orange-400 text-white text-center font-bold leading-tight"><span class="text-xs">SOLUÇÕES SEM INVESTIMENTOS</span><br>ALUGUEL DE USINA</div>
-                        <img src="https://images.unsplash.com/photo-1614325797397-60a241193d2a?q=80&w=1974&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FBBF24/FFFFFF?text=Aluguel+de+Usina';" alt="[Солнечные панели в поле]" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow">
-                           <p class="text-gray-600 text-sm">Economize na conta de luz sem instalar painéis, consumindo energia de usinas parceiras.</p>
-                        </div>
-                    </div>
-                    <!-- Card 5: Aluguel de Telhado -->
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="p-6 bg-orange-400 text-white text-center font-bold leading-tight"><span class="text-xs">SOLUÇÕES SEM INVESTIMENTOS</span><br>ALUGUEL DE TELHADO</div>
-                        <img src="https://images.unsplash.com/photo-1582192134089-7628a52f4a42?q=80&w=1962&auto=format&fit=crop" onerror="this.onerror=null;this.src='https://placehold.co/400x300/FBBF24/FFFFFF?text=Aluguel+de+Telhado';" alt="[Городской пейзаж с крышами]" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow">
-                           <p class="text-gray-600 text-sm">Rentabilize seu telhado ocioso alugando o espaço para a geração de energia solar.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== CONTACT FORM ===== -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Descubra quanto você irá economizar</h2>
-                    <p class="max-w-2xl mx-auto text-gray-600 mt-4">Simule já! É só preencher o formulário abaixo:</p>
-                </div>
-                <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-lg">
-                    <form id="whatsapp-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                            <input type="text" id="nome" name="nome" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label for="celular" class="block text-sm font-medium text-gray-700 mb-1">Celular</label>
-                            <input type="tel" id="celular" name="celular" required placeholder="(XX) XXXXX-XXXX" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label for="uf" class="block text-sm font-medium text-gray-700 mb-1">UF</label>
-                            <select id="uf" name="uf" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 bg-white"><option value="">Selecione o Estado</option><option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option><option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option><option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option><option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option></select>
-                        </div>
-                        <div>
-                            <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade</label>
-                            <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label for="modalidade" class="block text-sm font-medium text-gray-700 mb-1">Modalidade Tarifária</label>
-                            <select id="modalidade" name="modalidade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 bg-white"><option value="">Selecione a modalidade</option><option value="Residencial">Residencial</option><option value="Comercial">Comercial</option><option value="Industrial">Industrial</option><option value="Rural">Rural</option></select>
-                        </div>
-                        <div>
-                            <label for="propriedade" class="block text-sm font-medium text-gray-700 mb-1">Propriedade</label>
-                            <select id="propriedade" name="propriedade" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 bg-white"><option value="">O imóvel é...</option><option value="Própria">Própria</option><option value="Alugada">Alugada</option></select>
-                        </div>
-                        <div class="md:col-span-2">
-                             <label for="concessionaria" class="block text-sm font-medium text-gray-700 mb-1">Concessionária de Energia</label>
-                            <input type="text" id="concessionaria" name="concessionaria" placeholder="Ex: Enel, Coelba, etc." required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label for="valor_conta" class="block text-sm font-medium text-gray-700 mb-1">Valor Médio da Conta de Energia</label>
-                            <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">R$</span><input type="number" id="valor_conta" name="valor_conta" step="0.01" required placeholder="250,00" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"></div>
-                        </div>
-                        <div class="md:col-span-2 text-center">
-                            <button type="submit" class="brand-gradient text-white font-bold w-full md:w-auto px-10 py-4 rounded-lg text-lg hover:opacity-90 transition-opacity duration-300 shadow-lg mt-4">Enviar Simulação via WhatsApp</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== PARTNERS ===== -->
-        <section id="partners" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Nossos Parceiros</h2>
-                    <p class="max-w-2xl mx-auto text-gray-600 mt-4">Trabalhamos com os líderes do mercado para garantir a melhor qualidade e tecnologia.</p>
-                </div>
-                <div class="partner-carousel">
-                    <div><img src="https://i.ibb.co/y5yC4Cg/azume.png" alt="[Логотип Azume]"></div><div><img src="https://i.ibb.co/3YYZDPz/aldo-solar.png" alt="[Логотип Aldo Solar]"></div><div><img src="https://i.ibb.co/GvxYv05/ecori.png" alt="[Логотип Ecori]"></div><div><img src="https://i.ibb.co/F8bV3gW/solar-inove.png" alt="[Логотип Solar Inove]"></div><div><img src="https://i.ibb.co/vLNkHqG/serrana-solar.png" alt="[Логотип Serrana Solar]"></div><div><img src="https://i.ibb.co/jGNqLqB/delos.png" alt="[Логотип Delos]"></div><div><img src="https://i.ibb.co/R9gM9J4/sou-energy.png" alt="[Логотип Sou Energy]"></div><div><img src="https://i.ibb.co/M8VzQZz/fotus.png" alt="[Логотип Fotus]"></div><div><img src="https://i.ibb.co/qD4dC6q/impulso.png" alt="[Логотип Impulso]"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== FAQ ===== -->
-        <section id="faq" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Perguntas Frequentes</h2>
-                </div>
-                <div class="max-w-4xl mx-auto space-y-4">
-                    <div class="bg-gray-50 rounded-lg">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-                            <span class="text-lg font-semibold text-gray-800">Quanto custa a energia solar?</span>
-                            <span class="faq-icon text-amber-500 transform transition-transform duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span>
-                        </button>
-                        <div class="faq-answer px-6 pb-6"><p class="text-gray-600 leading-relaxed">Os sistemas de energia solar são dimensionados exclusivamente a cada projeto de acordo com o consumo elétrico que precisa ser atendido e outras características relacionadas ao imóvel e local de instalação. Todas essas informações são calculadas pela empresa de energia solar para definir o tamanho e preço final do seu sistema fotovoltaico.</p></div>
-                    </div>
-                    <div class="bg-gray-50 rounded-lg">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-                            <span class="text-lg font-semibold text-gray-800">Como funciona o sistema de energia solar fotovoltaica?</span>
-                            <span class="faq-icon text-amber-500 transform transition-transform duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span>
-                        </button>
-                        <div class="faq-answer px-6 pb-6"><p class="text-gray-600 leading-relaxed">Os sistemas de energia solar funcionam a partir de um painel fotovoltaico e outros equipamentos do kit solar que convertem a luz do sol diretamente em energia elétrica. Essa energia pode suprir até todo o consumo elétrico de uma casa, empresa, propriedade rural ou mesmo uma indústria.</p></div>
-                    </div>
-                    <div class="bg-gray-50 rounded-lg">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-                            <span class="text-lg font-semibold text-gray-800">O sistema de energia solar faz barulho?</span>
-                            <span class="faq-icon text-amber-500 transform transition-transform duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span>
-                        </button>
-                        <div class="faq-answer px-6 pb-6"><p class="text-gray-600 leading-relaxed">Não, ele é super silencioso. O painel solar produz energia através de um processo fotoquímico, e não mecânico, que não produz barulho algum.</p></div>
-                    </div>
-                    <div class="bg-gray-50 rounded-lg">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-                            <span class="text-lg font-semibold text-gray-800">A Manutenção do sistema de energia solar é cara?</span>
-                            <span class="faq-icon text-amber-500 transform transition-transform duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span>
-                        </button>
-                        <div class="faq-answer px-6 pb-6"><p class="text-gray-600 leading-relaxed">Não, como as manutenções dos sistemas fotovoltaicos são de baixa complexidade e pouco frequentes, elas não geram custos muitos elevados. Em média, o gasto anual com a manutenção do gerador de energia solar fica em torno de 0,5% do seu valor de aquisição.</p></div>
-                    </div>
-                    <div class="bg-gray-50 rounded-lg">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-                            <span class="text-lg font-semibold text-gray-800">Os painéis solares são resistentes?</span>
-                            <span class="faq-icon text-amber-500 transform transition-transform duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span>
-                        </button>
-                        <div class="faq-answer px-6 pb-6"><p class="text-gray-600 leading-relaxed">Sim, os painéis solares são fabricados com um vidro temperado especial e outros elementos de segurança que lhes garante alta resistência mecânica, algo essencial já que o equipamento fica exposto às mais variadas intempéries climáticas, incluindo chuvas de granizo.</p></div>
-                    </div>
-                    <div class="bg-gray-50 rounded-lg">
-                        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-                            <span class="text-lg font-semibold text-gray-800">Em quanto tempo o meu investimento se paga?</span>
-                            <span class="faq-icon text-amber-500 transform transition-transform duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span>
-                        </button>
-                        <div class="faq-answer px-6 pb-6"><p class="text-gray-600 leading-relaxed">Em média, um sistema de energia solar instalado no Brasil se paga, hoje, entre 4 e 5 anos. No entanto, esse prazo irá variar para cada instalação de acordo com o porte do sistema, níveis locais de radiação solar, valor da tarifa da distribuidora da região e outros dados. A boa notícia é que, com os constantes aumentos na conta de luz, os projetos estão ficando cada vez mais rentáveis.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="bg-gray-900 text-white">
-       <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div>
-                    <img src="https://i.ibb.co/L8y2zTq/d58f3b30-e1fe-11ed-ac3b-f3dacaf42679.png" alt="[Логотип SoSol белый]" class="h-12 mb-4">
-                    <p class="text-gray-400 text-sm">SoSol Soluções Solares</p>
-                    <p class="text-gray-400 text-sm mt-2">CNPJ: 50.200.431/0001-70</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-lg mb-4">Contato</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg>
-                            <span>Rua Monsenhor Bruno, 1153 - sala 502<br>Scopa Platinum Corporate - Aldeota<br>Fortaleza - CE</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
-                            <span>(85) 99220-7070</span>
-                        </li>
-                    </ul>
-                </div>
-                 <div>
-                    <h4 class="font-semibold text-lg mb-4">Links Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">Sobre Nós</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Serviços</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Simulação</a></li>
-                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-xs">
-                <p>© <span id="year"></span> SoSol Soluções Solares - Todos os Direitos Reservados.</p>
             </div>
         </div>
-    </footer>
+      </section>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Slick Carousel JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
-    <script>
-        $(document).ready(function(){
-            // Carousel de parceiros
-            $('.partner-carousel').slick({
-                slidesToShow: 5, slidesToScroll: 1, autoplay: true, autoplaySpeed: 2000,
-                arrows: false, dots: false, pauseOnHover: true,
-                responsive: [ { breakpoint: 1024, settings: { slidesToShow: 4 } }, { breakpoint: 768, settings: { slidesToShow: 3 } }, { breakpoint: 480, settings: { slidesToShow: 2 } } ]
-            });
+      {/* Footer Section */}
+      <footer className="bg-gray-800 text-white py-10">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex flex-wrap justify-center gap-6 mb-6">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-300 hover:text-white transition duration-300"
+              >
+                {item.name}
+              </a>
+            ))}
+            <a href="#" className="text-gray-300 hover:text-white transition duration-300">Política de Privacidade</a>
+            <a href="#" className="text-gray-300 hover:text-white transition duration-300">Termos de Uso</a>
+          </div>
+          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} Wkinternational Services. Todos os direitos reservados.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
 
-            // Menu Mobile
-            $('#mobile-menu-button').on('click', () => $('#mobile-menu').slideToggle());
-            $('a[href^="#"]').on('click', function(e) {
-                e.preventDefault();
-                if ($(window).width() < 1024 && $('#mobile-menu').is(':visible')) { $('#mobile-menu').slideUp(); }
-                const target = $(this.getAttribute('href'));
-                if(target.length) { $('html, body').stop().animate({ scrollTop: target.offset().top - 80 }, 800); }
-            });
-
-            // FAQ
-            $('.faq-question').on('click', function() {
-                const answer = $(this).next('.faq-answer');
-                const icon = $(this).find('.faq-icon');
-                $('.faq-answer').not(answer).css('maxHeight', '0px');
-                $('.faq-icon').not(icon).css('transform', 'rotate(0deg)');
-                if (answer.css('maxHeight') !== '0px') {
-                    answer.css('maxHeight', '0px');
-                    icon.css('transform', 'rotate(0deg)');
-                } else {
-                    answer.css('maxHeight', answer.prop('scrollHeight') + 'px');
-                    icon.css('transform', 'rotate(45deg)');
-                }
-            });
-
-            // Formulário WhatsApp
-            $('#whatsapp-form').on('submit', function(event) {
-                event.preventDefault();
-                const phoneNumber = '5585992207070';
-                const message = `Olá! Gostaria de uma simulação de economia.\n\n` +
-                                `*Nome:* ${$('#nome').val()}\n` +
-                                `*Celular:* ${$('#celular').val()}\n` +
-                                `*Local:* ${$('#cidade').val()} - ${$('#uf').val()}\n` +
-                                `*Modalidade:* ${$('#modalidade').val()}\n` +
-                                `*Propriedade:* ${$('#propriedade').val()}\n` +
-                                `*Concessionária:* ${$('#concessionaria').val()}\n` +
-                                `*Valor da Conta:* R$ ${$('#valor_conta').val()}`;
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappURL, '_blank');
-            });
-            
-            // Год в подвале
-            $('#year').text(new Date().getFullYear());
-
-            // Анимация счетчика
-            const counters = document.querySelectorAll('#stats h3');
-            const speed = 200; 
-
-            const animateCounter = (counter) => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const inc = target / speed;
-
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(() => animateCounter(counter), 1);
-                } else {
-                    counter.innerText = target.toLocaleString('pt-BR');
-                }
-            };
-            
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        counters.forEach(animateCounter);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            const statsSection = document.getElementById('stats');
-            if (statsSection) {
-                 observer.observe(statsSection);
-            }
-        });
-    </script>
-</body>
-</html>
+export default App;
