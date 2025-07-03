@@ -1,276 +1,609 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WK International Services - Consultoria para Estrangeiros no Brasil</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Título e descrição serão definidos pelo JavaScript -->
+    <title>translate.expert | Tradutor de Voz para WhatsApp</title>
+    <meta name="description" content="Tradutor inteligente de mensagens de voz para WhatsApp. Tradução instantânea de fala em mais de 100 idiomas. Experimente grátis!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/667eea/ffffff?text=TE">
+
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (para ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Alpine.js para interatividade -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Chart.js para gráficos (não usado neste design, mas mantido por referência) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #020617; /* slate-950 */
+            color: #e2e8f0; /* slate-200 */
         }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 21, 41, 0.8), rgba(0, 21, 41, 0.8)), url('https://images.unsplash.com/photo-1528459139293-5793444a4a15?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
+        .hero-gradient {
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(102, 126, 234, 0.2), rgba(102, 126, 234, 0)); /* Cores do gradiente ajustadas para o tema */
         }
-        .service-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        .section-glow {
+            background: radial-gradient(ellipse 100% 60% at 50% 100%, rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0)); /* Cores do gradiente ajustadas para o tema */
         }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        /* Esconder barra de rolagem para menu mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        .form-input {
-            transition: border-color 0.3s ease-in-out;
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
-        .form-input:focus {
-            border-color: #3b82f6; /* blue-500 */
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        [x-cloak] { display: none !important; }
+
+        /* Estilos personalizados para o tema */
+        .text-primary-accent {
+            color: #667eea; /* Cor principal de destaque */
+        }
+        .bg-primary-accent {
+            background-color: #667eea;
+        }
+        .hover\:bg-primary-darker:hover {
+            background-color: #5a6ed0; /* Versão mais escura para hover */
+        }
+        .border-primary-light {
+            border-color: #764ba2; /* Cor de borda mais clara */
+        }
+        .shadow-primary-soft {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        .hover\:shadow-primary-strong:hover {
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        .text-gradient-hero {
+            background: linear-gradient(45deg, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .cta-button-whatsapp {
+            background: #25D366; /* Verde WhatsApp */
+        }
+        .cta-button-whatsapp:hover {
+            background: #1DA851; /* Verde WhatsApp mais escuro */
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-700">
+<body class="text-slate-300 antialiased" x-data="{ openMenu: false, langMenu: false }">
 
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-800">
-                WK <span class="text-blue-600">International</span>
-            </a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="text-gray-600 hover:text-blue-600">Sobre Nós</a>
-                <a href="#services" class="text-gray-600 hover:text-blue-600">Serviços</a>
-                <a href="#team" class="text-gray-600 hover:text-blue-600">Nosso Time</a>
-                <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300">Contato</a>
+    <!-- Cabeçalho -->
+    <header class="bg-slate-950/80 backdrop-blur-lg fixed w-full z-40">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between h-20 border-b border-slate-800">
+                <a href="#" class="text-2xl font-bold text-white">🤖 <span class="text-primary-accent">translate.expert</span></a>
+                
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHome">Início</a>
+                    <a href="#features" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFeatures">Recursos</a>
+                    <a href="#how-it-works" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHowItWorks">Como Funciona</a>
+                    <a href="#languages" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navLanguages">Idiomas</a>
+                    <a href="#free" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFree">Gratuito</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Seletor de Idioma -->
+                    <div x-data="{ langMenu: false }" class="relative hidden lg:block">
+                        <button @click="langMenu = !langMenu" class="flex items-center space-x-2 text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors">
+                            <i class="fas fa-globe"></i>
+                            <span id="current-lang-desktop">RU</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div x-show="langMenu" @click.away="langMenu = false" x-cloak class="absolute top-full right-0 mt-2 w-32 bg-slate-900 border border-slate-800 rounded-lg shadow-lg">
+                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800" onclick="changeLanguage('pt')">Português (PT)</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800" onclick="changeLanguage('en')">English (EN)</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800" onclick="changeLanguage('es')">Español (ES)</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800" onclick="changeLanguage('ru')">Русский (RU)</a>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/12299999711" class="hidden sm:inline-block cta-button-whatsapp text-white font-bold py-2.5 px-6 rounded-lg hover:bg-primary-darker transition-all duration-300" data-key="navTryNow">
+                        Experimente Agora
+                    </a>
+                    <button @click="openMenu = true" class="lg:hidden text-white focus:outline-none z-50">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-100">Sobre Nós</a>
-            <a href="#services" class="block py-2 px-4 text-sm hover:bg-gray-100">Serviços</a>
-            <a href="#team" class="block py-2 px-4 text-sm hover:bg-gray-100">Nosso Time</a>
-            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-100">Contato</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg text-white">
-        <div class="container mx-auto px-6 py-32 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Simplificando sua jornada no Brasil</h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">Oferecemos suporte completo para estrangeiros, desde a obtenção de vistos até a sua total integração no país.</p>
-            <a href="#services" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">Conheça nossos serviços</a>
-        </div>
-    </section>
+    <!-- Overlay do Menu Mobile -->
+    <div x-show="openMenu" x-cloak
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-slate-950/95 backdrop-blur-lg z-50 flex flex-col items-center justify-center no-scrollbar">
+        
+        <button @click="openMenu = false" class="absolute top-7 right-5 text-white focus:outline-none">
+            <i class="fas fa-times text-3xl"></i>
+        </button>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Quem Somos</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 text-lg text-gray-600 leading-relaxed text-center md:text-left">
-                    <p class="mb-4">A <strong>WK International Services</strong> é dedicada exclusivamente ao atendimento de estrangeiros que chegam ao Brasil em busca da obtenção de visto permanente, de turista, de residente e de refúgio, além de prestar auxílio em reuniões, conferências e trabalho.</p>
-                    <p>A missão da empresa é exclusivamente proporcionar suporte aos estrangeiros em busca de seus direitos humanos em um novo local para viver, passear ou resolver seus problemas cotidianos.</p>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1574939227654-c97103b4148e?q=80&w=1939&auto=format&fit=crop" alt="Bandeira do Brasil e pessoas sorrindo" class="rounded-lg shadow-xl w-full h-auto">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Como podemos ajudar?</h2>
-                <p class="text-lg text-gray-500 mt-2">Nossos serviços especializados para estrangeiros no Brasil.</p>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service Cards -->
-                <div class="service-card bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="mb-4 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Naturalização Brasileira</h3>
-                    <p class="text-gray-500 text-sm">Brazilian naturalization<br>Бразильская натурализация<br>Naturalización brasileña</p>
-                </div>
-                <div class="service-card bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="mb-4 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Residência por Reunião Familiar</h3>
-                    <p class="text-gray-500 text-sm">Residence by family reunion<br>Резиденция по воссоединению семьи<br>Residencia por reunión familiar</p>
-                </div>
-                <div class="service-card bg-white rounded-lg shadow-lg p-6 text-center">
-                    <div class="mb-4 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4z" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Agendamentos: RNE</h3>
-                    <p class="text-gray-500 text-sm">Appointments: issuance / renewal of RNE<br>Назначения: выдача/продление РНЭ<br>Expedición/renovación de RNE</p>
-                </div>
-                <div class="service-card bg-white rounded-lg shadow-lg p-6 text-center">
-                     <div class="mb-4 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg></div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">Vistos para Estrangeiros</h3>
-                    <p class="text-gray-500 text-sm">Visas for foreigners<br>Визы для иностранцев<br>Visas para extranjeros</p>
-                </div>
+        <nav class="flex flex-col items-center space-y-8">
+            <a @click="openMenu = false" href="#home" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHomeMobile">Início</a>
+            <a @click="openMenu = false" href="#features" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFeaturesMobile">Recursos</a>
+            <a @click="openMenu = false" href="#how-it-works" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHowItWorksMobile">Como Funciona</a>
+            <a @click="openMenu = false" href="#languages" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navLanguagesMobile">Idiomas</a>
+            <a @click="openMenu = false" href="#free" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFreeMobile">Gratuito</a>
+            <a @click="openMenu = false" href="https://wa.me/12299999711" class="mt-8 cta-button-whatsapp text-white font-bold py-3 px-10 rounded-lg hover:bg-primary-darker transition-all duration-300" data-key="navTryNowMobile">
+                Experimente Agora
+            </a>
+        </nav>
+        
+        <!-- Seletor de Idioma Mobile -->
+        <div class="mt-12">
+            <div class="flex space-x-4">
+                <button onclick="changeLanguage('pt')" class="font-bold text-slate-400 hover:text-primary-accent">PT</button>
+                <span class="text-slate-600">|</span>
+                <button onclick="changeLanguage('en')" class="font-bold text-slate-400 hover:text-primary-accent">EN</button>
+                <span class="text-slate-600">|</span>
+                <button onclick="changeLanguage('es')" class="font-bold text-slate-400 hover:text-primary-accent">ES</button>
+                <span class="text-slate-600">|</span>
+                <button onclick="changeLanguage('ru')" class="font-bold text-slate-400 hover:text-primary-accent">RU</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Team Section -->
-    <section id="team" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Conheça Nosso Time</h2>
-                <p class="text-lg text-gray-500 mt-2">Nossa equipe de especialistas está pronta para ajudar.</p>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-                <!-- Team Members with professional images -->
-                <div class="text-center">
-                    <img class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop" alt="Foto do consultor de imigração">
-                    <h3 class="text-xl font-bold text-gray-800">Consultor Especialista</h3>
-                    <p class="text-gray-500">Consultor de Imigração</p>
+    <main>
+        <!-- Seção Hero -->
+        <section id="home" class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden hero-gradient text-center">
+            <div class="container mx-auto px-4 sm:px-6 relative z-10">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gradient-hero leading-tight mb-6 animate-fade-in" data-key="heroTitle">
+                    Tradutor Inteligente de Mensagens de Voz
+                </h1>
+                <p class="text-lg lg:text-xl max-w-3xl mx-auto text-slate-300 mb-10 animate-fade-in" data-key="heroSubtitle">
+                    Tradução instantânea de mensagens de voz em mais de 100 idiomas diretamente no WhatsApp. Totalmente grátis!
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://wa.me/12299999711" class="w-full sm:w-auto cta-button-whatsapp text-white font-bold py-3.5 px-8 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong animate-fade-in" data-key="heroCtaPrimary">
+                        Experimente Grátis
+                    </a>
                 </div>
-                <div class="text-center">
-                    <img class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop" alt="Foto da advogada de imigração">
-                    <h3 class="text-xl font-bold text-gray-800">Advogada Especialista</h3>
-                    <p class="text-gray-500">Advogada de Imigração</p>
-                </div>
-                <div class="text-center">
-                    <img class="w-40 h-40 rounded-full mx-auto mb-4 shadow-lg object-cover" src="https://images.unsplash.com/photo-1599667798628-552723c33128?q=80&w=1887&auto=format&fit=crop" alt="Foto do tradutor juramentado">
-                    <h3 class="text-xl font-bold text-gray-800">Tradutor Especialista</h3>
-                    <p class="text-gray-500">Tradutor Juramentado</p>
+                <div class="text-xl font-bold text-white mt-8 text-shadow-lg animate-fade-in" data-key="heroPhoneNumber">
+                    📱 +1 (229) 999-9711
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Entre em Contato</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
-            <div class="max-w-xl mx-auto bg-white rounded-lg shadow-lg p-8">
-                <form id="contact-form">
-                    <div class="mb-4">
-                        <label for="contact-name" class="block text-gray-700 font-bold mb-2">Nome</label>
-                        <input type="text" id="contact-name" name="name" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none" placeholder="Seu nome">
+        <!-- Seção de Recursos -->
+        <section id="features" class="py-16 sm:py-24 bg-slate-900 section-glow">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-16" data-key="featuresTitle">Por que nos escolher?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center feature-card">
+                        <div class="text-4xl text-primary-accent mb-4 feature-icon">🎙️</div>
+                        <h3 class="font-semibold text-white mb-2 text-xl" data-key="feature1Title">Transcrições Precisas</h3>
+                        <p class="text-sm text-slate-400" data-key="feature1Desc">Usamos OpenAI Whisper para reconhecimento de fala altamente preciso em qualquer idioma.</p>
                     </div>
-                    <div class="mb-4">
-                        <label for="contact-email" class="block text-gray-700 font-bold mb-2">Email</label>
-                        <input type="email" id="contact-email" name="email" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none" placeholder="Seu email">
+                    <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center feature-card">
+                        <div class="text-4xl text-primary-accent mb-4 feature-icon">⚡</div>
+                        <h3 class="font-semibold text-white mb-2 text-xl" data-key="feature2Title">Resultados Instantâneos</h3>
+                        <p class="text-sm text-slate-400" data-key="feature2Desc">Obtenha transcrição e tradução em apenas 3-5 segundos após enviar uma mensagem de voz.</p>
                     </div>
-                    <div class="mb-6">
-                        <label for="contact-message" class="block text-gray-700 font-bold mb-2">Mensagem</label>
-                        <textarea id="contact-message" name="message" rows="4" class="form-input w-full px-4 py-2 border rounded-lg focus:outline-none" placeholder="Digite sua mensagem aqui..."></textarea>
+                    <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center feature-card">
+                        <div class="text-4xl text-primary-accent mb-4 feature-icon">🌍</div>
+                        <h3 class="font-semibold text-white mb-2 text-xl" data-key="feature3Title">Mais de 100 Idiomas</h3>
+                        <p class="text-sm text-slate-400" data-key="feature3Desc">Suporta todos os idiomas populares do mundo com detecção automática de idioma.</p>
                     </div>
-                    <p id="error-message" class="text-red-500 text-sm mb-4 text-center"></p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button type="button" onclick="sendMessage('whatsapp')" class="w-full flex items-center justify-center bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition duration-300">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.003 2.228.657 4.357 1.849 6.267l.22.368-1.643 6.015 6.157-1.611z"/></svg>
-                            Enviar via WhatsApp
-                        </button>
-                        <button type="button" onclick="sendMessage('telegram')" class="w-full flex items-center justify-center bg-blue-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-300">
-                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23.05-.72.72-.05 4.23-.28.04-.01.01.03-3.56 3.56.01.04.28 4.23zm3.56-11.08l-3.56 3.56.01.04.28 4.23.05.72.72.05 4.23-.28.04-.01-.01-3.56-3.56-.01-.04-4.23-.05-.72-.72-.05-4.23.28zm-6.28 2.82l-2.02 2.02c-1.12 1.12-1.12 2.94 0 4.06l4.06 4.06c1.12 1.12 2.94 1.12 4.06 0l2.02-2.02 4.62-4.62c.75-.75.75-1.97 0-2.72l-8.38-8.38c-.75-.75-1.97-.75-2.72 0l-4.62 4.62z"/></svg>
-                            Enviar via Telegram
-                        </button>
+                    <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center feature-card">
+                        <div class="text-4xl text-primary-accent mb-4 feature-icon">🔒</div>
+                        <h3 class="font-semibold text-white mb-2 text-xl" data-key="feature4Title">Segurança</h3>
+                        <p class="text-sm text-slate-400" data-key="feature4Desc">Suas mensagens de voz são processadas confidencialmente e não são armazenadas.</p>
                     </div>
-                </form>
-            </div>
-             <div class="mt-12 text-center text-gray-600">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Nossos Escritórios</h3>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
-                     <div class="p-4">
-                        <h4 class="font-bold">São Paulo - SP</h4>
-                        <p>Av. Paulista, 1471, Sala 317</p>
-                        <p><strong>Tel:</strong> +55 (48) 98876-2775</p>
+                    <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center feature-card">
+                        <div class="text-4xl text-primary-accent mb-4 feature-icon">📱</div>
+                        <h3 class="font-semibold text-white mb-2 text-xl" data-key="feature5Title">Conveniência</h3>
+                        <p class="text-sm text-slate-400" data-key="feature5Desc">Funciona diretamente no WhatsApp - não é necessário instalar aplicativos adicionais.</p>
                     </div>
-                    <div class="p-4">
-                        <h4 class="font-bold">Florianópolis - SC</h4>
-                         <p>Av. Prof. Othon Gama D'eça, 677, Sala 501</p>
-                         <p><strong>Tel:</strong> +55 (48) 99640-0540</p>
+                    <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center feature-card">
+                        <div class="text-4xl text-primary-accent mb-4 feature-icon">💎</div>
+                        <h3 class="font-semibold text-white mb-2 text-xl" data-key="feature6Title">Totalmente Gratuito</h3>
+                        <p class="text-sm text-slate-400" data-key="feature6Desc">Use o serviço sem limitações - sem taxas ocultas ou assinaturas.</p>
                     </div>
                 </div>
-                 <p class="mt-4"><strong>Email:</strong> wkinternationalservicesbr@gmail.com</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mb-4">
-                 <a href="#" class="text-xl font-bold">WK <span class="text-blue-400">International</span></a>
+        <!-- Seção Como Funciona -->
+        <section id="how-it-works" class="py-16 sm:py-24 bg-slate-800 section-glow">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-16" data-key="howItWorksTitle">Como Funciona?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center p-4 step">
+                        <div class="w-16 h-16 rounded-full bg-primary-accent text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 step-number">1</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-key="step1Title">Adicione o bot</h3>
+                        <p class="text-sm text-slate-400" data-key="step1Desc">Envie uma mensagem para o número +1 (229) 999-9711 no WhatsApp.</p>
+                    </div>
+                    <div class="text-center p-4 step">
+                        <div class="w-16 h-16 rounded-full bg-primary-accent text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 step-number">2</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-key="step2Title">Grave uma mensagem de voz</h3>
+                        <p class="text-sm text-slate-400" data-key="step2Desc">Fale em qualquer idioma - o sistema detectará o idioma automaticamente.</p>
+                    </div>
+                    <div class="text-center p-4 step">
+                        <div class="w-16 h-16 rounded-full bg-primary-accent text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 step-number">3</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-key="step3Title">Envie para o bot</h3>
+                        <p class="text-sm text-slate-400" data-key="step3Desc">Basta enviar a mensagem de voz como faria para um contato normal.</p>
+                    </div>
+                    <div class="text-center p-4 step">
+                        <div class="w-16 h-16 rounded-full bg-primary-accent text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 step-number">4</div>
+                        <h3 class="text-xl font-semibold text-white mb-2" data-key="step4Title">Obtenha o resultado</h3>
+                        <p class="text-sm text-slate-400" data-key="step4Desc">Obtenha instantaneamente a transcrição e a tradução.</p>
+                    </div>
+                </div>
             </div>
-            <div class="flex justify-center space-x-6 mb-4">
-                <!-- Social Media Icons -->
-                <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg></a>
-                <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 5.58,20 10,20C10.64,20 11.25,19.93 11.84,19.82C12.44,19.71 13.11,19.5 13.11,19.5L14,22L15.5,21L14.5,18.5L14.12,18.12C14.62,17.82 15.06,17.47 15.44,17.06C18.46,14.05 18.46,9.13 15.44,6.11C14,4.62 12,4.62 10.53,6.09L12,7.5L13.41,6.09C14.19,6.87 14.19,8.13 13.41,8.91L12,10.33L10.59,8.91C9.81,8.13 9.81,6.87 10.59,6.09C11.37,5.31 12.63,5.31 13.41,6.09L14.83,7.5C14.83,7.5 16.24,6.09 15.44,5.31C14.29,4.12 12.09,4.12 10.94,5.31L9.5,6.75L8.06,5.31C6.91,4.12 4.71,4.12 3.56,5.31C2.37,6.46 2.37,8.27 3.56,9.46L8.06,13.96C8.59,14.5 9.53,14.5 10.06,13.96L11.5,12.5L10.06,11.04C9.53,10.5 8.59,10.5 8.06,11.04L6.62,12.47C5.84,11.69 4.58,11.69 3.8,12.47C3,13.25 3,14.5 3.8,15.28C4.58,16.06 5.84,16.06 6.62,15.28L8.06,13.84L9.5,15.28L8.06,16.72C7.28,17.5 7.28,18.75 8.06,19.53C8.84,20.31 10.1,20.31 10.88,19.53L12,18.41L13.12,19.53C12.5,19.68 12.13,19.78 11.84,19.82C11.25,19.93 10.64,20 10,20C5.58,20 2,16.42 2,12A10,10 0 0,0 12,2Z" /></svg></a>
-                <a href="#" class="text-gray-400 hover:text-white"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.89 20.1,3 19,3M8.5,18H6.5V9H8.5V18M17.5,18H15.5V13.4C15.5,12.6 15.2,11.9 14.2,11.9C13.2,11.9 12.8,12.6 12.8,13.4V18H10.8V9H12.8V10.2C13.2,9.5 14,9 15,9C16.9,9 17.5,10.5 17.5,12.6V18Z" /></svg></a>
+        </section>
+
+        <!-- Seção de Idiomas -->
+        <section id="languages" class="py-16 sm:py-24 bg-slate-900 section-glow">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-16" data-key="languagesTitle">Idiomas Suportados</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langEN">🇺🇸 Inglês</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langES">🇪🇸 Espanhol</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langFR">🇫🇷 Francês</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langDE">🇩🇪 Alemão</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langIT">🇮🇹 Italiano</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langPT">🇵🇹 Português</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langZH">🇨🇳 Chinês</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langJA">🇯🇵 Japonês</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langKO">🇰🇷 Coreano</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langAR">🇸🇦 Árabe</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langTR">🇹🇷 Turco</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langNL">🇳🇱 Holandês</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langPL">🇵🇱 Polonês</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langCS">🇨🇿 Tcheco</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langHU">🇭🇺 Húngaro</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langMore">🌍 E mais 85+</div>
+                </div>
             </div>
-            <p class="text-gray-500 text-sm">&copy; 2024 WK International Services. Todos os direitos reservados.</p>
+        </section>
+
+        <!-- Seção de Preços (Gratuito) -->
+        <section id="free" class="py-16 sm:py-24 bg-slate-800 section-glow">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-16" data-key="pricingTitle">Experimente Grátis</h2>
+                <div class="pricing-card bg-slate-900 border border-slate-700 rounded-xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-bold text-white mb-4" data-key="pricingCardTitle">Uso Gratuito</h3>
+                    <div class="text-5xl font-extrabold text-primary-accent mb-4" data-key="pricingPrice">GRÁTIS</div>
+                    <p class="text-slate-400 mb-6" data-key="pricingSubtitle">para todos os usuários</p>
+                    <ul class="list-none text-left mx-auto max-w-xs space-y-3 mb-8">
+                        <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature1">Transcrições de voz precisas</span></li>
+                        <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature2">Tradução para o idioma desejado</span></li>
+                        <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature3">Mais de 100 idiomas suportados</span></li>
+                        <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature4">Resultados instantâneos</span></li>
+                        <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature5">Processamento confidencial</span></li>
+                        <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature6">Suporte 24/7</span></li>
+                    </ul>
+                    <a href="https://wa.me/12299999711" class="cta-button-whatsapp text-white font-bold py-3.5 px-10 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong" data-key="pricingCta">
+                        Começar a usar
+                    </a>
+                    <p class="text-slate-500 text-sm mt-4" data-key="pricingNote">
+                        Serviço totalmente gratuito, sem limitações ou taxas ocultas.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-slate-950 border-t border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Seção de Produto -->
+                <div>
+                    <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerProductTitle">Produto</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#features" class="hover:text-primary-accent transition-colors" data-key="footerProductFeatures">Recursos</a></li>
+                        <li><a href="#how-it-works" class="hover:text-primary-accent transition-colors" data-key="footerProductHowItWorks">Como Funciona</a></li>
+                        <li><a href="#languages" class="hover:text-primary-accent transition-colors" data-key="footerProductLanguages">Idiomas</a></li>
+                        <li><a href="#free" class="hover:text-primary-accent transition-colors" data-key="footerProductPricing">Gratuito</a></li>
+                    </ul>
+                </div>
+                <!-- Seção de Suporte -->
+                <div>
+                    <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerSupportTitle">Suporte</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="https://wa.me/12299999711" class="hover:text-primary-accent transition-colors" data-key="footerSupportWhatsapp">WhatsApp Bot</a></li>
+                        <li><a href="mailto:info@itcbr.io" class="hover:text-primary-accent transition-colors" data-key="footerSupportEmail">Email Suporte</a></li>
+                        <li><a href="https://itcbr.io/Termos_de_Uso_ITCBRIO.html" class="hover:text-primary-accent transition-colors" data-key="footerTermsOfUse">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition-colors" data-key="footerPrivacyPolicy">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <!-- Seção de Contato -->
+                <div>
+                    <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerContactTitle">Contato</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="https://wa.me/12299999711" class="hover:text-primary-accent transition-colors flex items-center"><i class="fab fa-whatsapp mr-2"></i><span data-key="footerContactWhatsapp">+1 (229) 999-9711</span></a></li>
+                        <li><a href="tel:+5588997889999" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-phone mr-2"></i><span data-key="footerContactPhoneBrazil">+55 88 99788 9999</span></a></li>
+                        <li><a href="mailto:info@itcbr.io" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i><span data-key="footerContactEmail">info@itcbr.io</span></a></li>
+                        <li><a href="#" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-globe mr-2"></i><span data-key="footerContactWebsite">translate.expert</span></a></li>
+                    </ul>
+                    <div class="mt-4 flex space-x-4 text-slate-400">
+                        <a href="https://www.instagram.com/itcbrio/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors">
+                            <i class="fa-brands fa-instagram text-xl"></i><span class="sr-only">Instagram</span>
+                        </a>
+                        <a href="https://www.youtube.com/@ITCBR_IO" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors">
+                            <i class="fa-brands fa-youtube text-xl"></i><span class="sr-only">YouTube</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@itcbrioltda" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors">
+                            <i class="fa-brands fa-tiktok text-xl"></i><span class="sr-only">TikTok</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-slate-700 my-8">
+            <p class="text-center text-sm text-slate-500" data-key="footerCopyright">&copy; 2025 translate.expert. Todos os direitos reservados.</p>
         </div>
     </footer>
+    
+    <!-- Botão Voltar ao Topo -->
+    <div x-data="{ show: false }" @scroll.window="show = (window.scrollY > 600)" x-cloak>
+        <button x-show="show" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+                x-transition
+                class="fixed bottom-6 right-6 bg-primary-accent/80 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-primary-accent focus:outline-none z-30">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // --- SCRIPT DE TRADUÇÃO ---
+        const translations = {
+            // Meta Tags
+            siteTitle: {
+                pt: 'translate.expert | Tradutor de Voz para WhatsApp',
+                en: 'translate.expert | WhatsApp Voice Translator',
+                es: 'translate.expert | Traductor de Voz para WhatsApp',
+                ru: 'translate.expert | Переводчик Голосовых для WhatsApp'
+            },
+            siteDescription: {
+                pt: 'Tradutor inteligente de mensagens de voz para WhatsApp. Tradução instantânea de fala em mais de 100 idiomas. Experimente grátis!',
+                en: 'Smart voice message translator for WhatsApp. Instant speech translation in 100+ languages. Try for free!',
+                es: 'Traductor inteligente de mensajes de voz para WhatsApp. Traducción instantánea de voz en más de 100 idiomas. ¡Pruébalo gratis!',
+                ru: 'Умный переводчик голосовых сообщений для WhatsApp. Мгновенный перевод речи на 100+ языках. Попробуйте бесплатно!'
+            },
+            // Navegação
+            navHome: { pt: 'Início', en: 'Home', es: 'Inicio', ru: 'Главная' },
+            navFeatures: { pt: 'Recursos', en: 'Features', es: 'Características', ru: 'Возможности' },
+            navHowItWorks: { pt: 'Como Funciona', en: 'How it works', es: 'Cómo Funciona', ru: 'Как работает' },
+            navLanguages: { pt: 'Idiomas', en: 'Languages', es: 'Idiomas', ru: 'Языки' },
+            navFree: { pt: 'Gratuito', en: 'Free', es: 'Gratuito', ru: 'Бесплатно' },
+            navTryNow: { pt: 'Experimente Agora', en: 'Try Now', es: 'Pruebe Ahora', ru: 'Попробовать Сейчас' },
+            navHomeMobile: { pt: 'Início', en: 'Home', es: 'Inicio', ru: 'Главная' },
+            navFeaturesMobile: { pt: 'Recursos', en: 'Features', es: 'Características', ru: 'Возможности' },
+            navHowItWorksMobile: { pt: 'Como Funciona', en: 'How it works', es: 'Cómo Funciona', ru: 'Как работает' },
+            navLanguagesMobile: { pt: 'Idiomas', en: 'Languages', es: 'Idiomas', ru: 'Языки' },
+            navFreeMobile: { pt: 'Gratuito', en: 'Free', es: 'Gratuito', ru: 'Бесплатно' },
+            navTryNowMobile: { pt: 'Experimente Agora', en: 'Try Now', es: 'Pruebe Ahora', ru: 'Попробовать Сейчас' },
+            // Seção Hero
+            heroTitle: {
+                pt: 'Tradutor Inteligente de Mensagens de Voz',
+                en: 'Smart Voice Message Translator',
+                es: 'Traductor Inteligente de Mensajes de Voz',
+                ru: 'Умный Переводчик Голосовых Сообщений'
+            },
+            heroSubtitle: {
+                pt: 'Tradução instantânea de mensagens de voz em mais de 100 idiomas diretamente no WhatsApp. Totalmente grátis!',
+                en: 'Instant voice message translation in 100+ languages directly in WhatsApp. Completely free!',
+                es: 'Traducción instantánea de mensajes de voz en más de 100 idiomas directamente en WhatsApp. ¡Completamente gratis!',
+                ru: 'Мгновенный перевод голосовых сообщений на 100+ языках прямо в WhatsApp. Полностью бесплатно!'
+            },
+            heroCtaPrimary: {
+                pt: 'Experimente Grátis',
+                en: 'Try for Free',
+                es: 'Probar Gratis',
+                ru: 'Попробовать Бесплатно'
+            },
+            heroPhoneNumber: {
+                pt: '📱 +1 (229) 999-9711',
+                en: '📱 +1 (229) 999-9711',
+                es: '📱 +1 (229) 999-9711',
+                ru: '📱 +1 (229) 999-9711'
+            },
+            // Seção de Recursos
+            featuresTitle: { pt: 'Por que nos escolher?', en: 'Why choose us?', es: '¿Por qué elegirnos?', ru: 'Почему выбирают нас?' },
+            feature1Title: { pt: 'Transcrições Precisas', en: 'Accurate Transcriptions', es: 'Transcipción Precisa', ru: 'Точная расшифровка' },
+            feature1Desc: {
+                pt: 'Usamos OpenAI Whisper para reconhecimento de fala altamente preciso em qualquer idioma.',
+                en: 'We use OpenAI Whisper for highly accurate speech recognition in any language.',
+                es: 'Utilizamos OpenAI Whisper para un reconocimiento de voz altamente preciso en cualquier idioma.',
+                ru: 'Используем OpenAI Whisper для максимально точного распознавания речи на любом языке'
+            },
+            feature2Title: { pt: 'Resultados Instantâneos', en: 'Instant Results', es: 'Resultados Instantáneos', ru: 'Мгновенный результат' },
+            feature2Desc: {
+                pt: 'Obtenha transcrição e tradução em apenas 3-5 segundos após enviar uma mensagem de voz.',
+                en: 'Get transcription and translation in just 3-5 seconds after sending a voice message.',
+                es: 'Obtenga transcripción y traducción en solo 3-5 segundos después de enviar un mensaje de voz.',
+                ru: 'Получайте расшифровку и перевод всего за 3-5 секунд после отправки голосового'
+            },
+            feature3Title: { pt: 'Mais de 100 Idiomas', en: '100+ Languages', es: 'Más de 100 Idiomas', ru: '100+ языков' },
+            feature3Desc: {
+                pt: 'Suporta todos os idiomas populares do mundo com detecção automática de idioma.',
+                en: 'Supports all popular languages worldwide with automatic language detection.',
+                es: 'Compatible con todos los idiomas populares del mundo con detección automática de idioma.',
+                ru: 'Поддерживаем все популярные языки мира с автоматическим определением языка'
+            },
+            feature4Title: { pt: 'Segurança', en: 'Security', es: 'Seguridad', ru: 'Безопасность' },
+            feature4Desc: {
+                pt: 'Suas mensagens de voz são processadas confidencialmente e não são armazenadas.',
+                en: 'Your voice messages are processed confidentially and are not stored.',
+                es: 'Sus mensajes de voz se procesan de forma confidencial y no se almacenan.',
+                ru: 'Ваши голосовые сообщения обрабатываются конфиденциально и не сохраняются'
+            },
+            feature5Title: { pt: 'Conveniência', en: 'Convenience', es: 'Conveniencia', ru: 'Удобство' },
+            feature5Desc: {
+                pt: 'Funciona diretamente no WhatsApp - não é necessário instalar aplicativos adicionais.',
+                en: 'Works directly in WhatsApp - no need to install additional apps.',
+                es: 'Funciona directamente en WhatsApp - no es necesario instalar aplicaciones adicionales.',
+                ru: 'Работает прямо в WhatsApp - не нужно устанавливать дополнительные приложения'
+            },
+            feature6Title: { pt: 'Totalmente Gratuito', en: 'Completely Free', es: 'Completamente Gratis', ru: 'Полностью бесплатно' },
+            feature6Desc: {
+                pt: 'Use o serviço sem limitações - sem taxas ocultas ou assinaturas.',
+                en: 'Use the service without limitations - no hidden fees or subscriptions.',
+                es: 'Utilice el servicio sin limitaciones - sin tarifas ocultas ni suscripciones.',
+                ru: 'Используйте сервис без ограничений - никаких скрытых платежей или подписок'
+            },
+            // Seção Como Funciona
+            howItWorksTitle: { pt: 'Como Funciona?', en: 'How it works?', es: '¿Cómo Funciona?', ru: 'Как это работает?' },
+            step1Title: { pt: 'Adicione o bot', en: 'Add the bot', es: 'Agregue el bot', ru: 'Добавьте бота' },
+            step1Desc: { pt: 'Envie uma mensagem para o número +1 (229) 999-9711 no WhatsApp.', en: 'Send a message to +1 (229) 999-9711 on WhatsApp.', es: 'Envíe un mensaje al número +1 (229) 999-9711 en WhatsApp.', ru: 'Отправьте сообщение на номер +1 229 999 9711 в WhatsApp' },
+            step2Title: { pt: 'Grave uma mensagem de voz', en: 'Record a voice message', es: 'Grabe un mensaje de voz', ru: 'Запишите голосовое' },
+            step2Desc: { pt: 'Fale em qualquer idioma - o sistema detectará o idioma automaticamente.', en: 'Speak in any language - the system will automatically detect the language.', es: 'Hable en cualquier idioma - el sistema detectará el idioma automáticamente.', ru: 'Говорите на любом языке - система автоматически определит язык' },
+            step3Title: { pt: 'Envie para o bot', en: 'Send to the bot', es: 'Envíe al bot', ru: 'Отправьте боту' },
+            step3Desc: { pt: 'Basta enviar a mensagem de voz como faria para um contato normal.', en: 'Simply send the voice message as you would to a regular contact.', es: 'Simplemente envíe el mensaje de voz como lo haría a un contacto normal.', ru: 'Просто отправьте голосовое сообщение как обычному контакту' },
+            step4Title: { pt: 'Obtenha o resultado', en: 'Get the result', es: 'Obtenga el resultado', ru: 'Получите результат' },
+            step4Desc: { pt: 'Obtenha instantaneamente a transcrição e a tradução.', en: 'Instantly get transcription and translation.', es: 'Obtenga instantáneamente la transcripción y la traducción.', ru: 'Мгновенно получите расшифровку и перевод на русский язык' },
+            // Seção de Idiomas
+            languagesTitle: { pt: 'Idiomas Suportados', en: 'Supported Languages', es: 'Idiomas Soportados', ru: 'Поддерживаемые языки' },
+            langEN: { pt: '🇺🇸 Inglês', en: '🇺🇸 English', es: '🇺🇸 Inglés', ru: '🇺🇸 Английский' },
+            langES: { pt: '🇪🇸 Espanhol', en: '🇪🇸 Spanish', es: '🇪🇸 Español', ru: '🇪🇸 Испанский' },
+            langFR: { pt: '🇫🇷 Francês', en: '🇫🇷 French', es: '🇫🇷 Francés', ru: '�🇷 Французский' },
+            langDE: { pt: '🇩🇪 Alemão', en: '🇩🇪 German', es: '🇩🇪 Alemán', ru: '🇩🇪 Немецкий' },
+            langIT: { pt: '🇮🇹 Italiano', en: '🇮🇹 Italian', es: '🇮🇹 Italiano', ru: '🇮🇹 Итальянский' },
+            langPT: { pt: '🇵🇹 Português', en: '🇵🇹 Portuguese', es: '🇵🇹 Portugués', ru: '🇵🇹 Португальский' },
+            langZH: { pt: '🇨🇳 Chinês', en: '🇨🇳 Chinese', es: '🇨🇳 Chino', ru: '🇨🇳 Китайский' },
+            langJA: { pt: '🇯🇵 Japonês', en: '🇯🇵 Japanese', es: '🇯🇵 Japonés', ru: '🇯🇵 Японский' },
+            langKO: { pt: '🇰🇷 Coreano', en: '🇰🇷 Korean', es: '🇰🇷 Coreano', ru: '🇰🇷 Корейский' },
+            langAR: { pt: '🇸🇦 Árabe', en: '🇸🇦 Arabic', es: '🇸🇦 Árabe', ru: '🇸🇦 Арабский' },
+            langTR: { pt: '🇹🇷 Turco', en: '🇹🇷 Turkish', es: '🇹🇷 Turco', ru: '🇹🇷 Турецкий' },
+            langNL: { pt: '🇳🇱 Holandês', en: '🇳🇱 Dutch', es: '🇳🇱 Holandês', ru: '🇳🇱 Голландский' },
+            langPL: { pt: '🇵🇱 Polonês', en: '🇵🇱 Polish', es: '🇵🇱 Polaco', ru: '🇵🇱 Польский' },
+            langCS: { pt: '🇨🇿 Tcheco', en: '🇨🇿 Czech', es: '🇨🇿 Checo', ru: '🇨🇿 Чешский' },
+            langHU: { pt: '🇭🇺 Húngaro', en: '🇭🇺 Hungarian', es: '🇭🇺 Húngaro', ru: '🇭🇺 Венгерский' },
+            langMore: { pt: '🌍 E mais 85+', en: '🌍 And 85+ more', es: '🌍 Y 85+ más', ru: '🌍 И 85+ других' },
+            // Seção de Preços
+            pricingTitle: { pt: 'Experimente Grátis', en: 'Try for Free', es: 'Probar Gratis', ru: 'Попробуйте бесплатно' },
+            pricingCardTitle: { pt: 'Uso Gratuito', en: 'Free Usage', es: 'Uso Gratuito', ru: 'Бесплатное использование' },
+            pricingPrice: { pt: 'GRÁTIS', en: 'FREE', es: 'GRATIS', ru: 'БЕСПЛАТНО' },
+            pricingSubtitle: { pt: 'para todos os usuários', en: 'for all users', es: 'para todos os usuários', ru: 'для всех пользователей' },
+            pricingFeature1: { pt: 'Transcrições de voz precisas', en: 'Accurate voice transcriptions', es: 'Transcipción de voz precisa', ru: 'Точная расшифровка речи' },
+            pricingFeature2: { pt: 'Tradução para o idioma desejado', en: 'Translation to the desired language', es: 'Traducción al idioma deseado', ru: 'Перевод на русский' },
+            pricingFeature3: { pt: 'Mais de 100 idiomas suportados', en: '100+ languages supported', es: 'Más de 100 idiomas soportados', ru: '100+ языков' },
+            pricingFeature4: { pt: 'Resultados instantâneos', en: 'Instant results', es: 'Resultados instantáneos', ru: 'Мгновенный результат' },
+            pricingFeature5: { pt: 'Processamento confidencial', en: 'Confidential processing', es: 'Procesamiento confidencial', ru: 'Конфиденциальность' },
+            pricingFeature6: { pt: 'Suporte 24/7', en: '24/7 Support', es: 'Soporte 24/7', ru: 'Поддержка 24/7' },
+            pricingCta: { pt: 'Começar a usar', en: 'Start using', es: 'Empezar a usar', ru: 'Начать использовать' },
+            pricingNote: { pt: 'Serviço totalmente gratuito, sem limitações ou taxas ocultas.', en: 'Completely free service, no limitations or hidden fees.', es: 'Servicio completamente gratuito, sin limitaciones ni tarifas ocultas.', ru: 'Полностью бесплатный сервис без ограничений' },
+            // Rodapé
+            footerProductTitle: { pt: 'Produto', en: 'Product', es: 'Producto', ru: 'Продукт' },
+            footerProductFeatures: { pt: 'Recursos', en: 'Features', es: 'Características', ru: 'Возможности' },
+            footerProductHowItWorks: { pt: 'Como Funciona', en: 'How it works', es: 'Cómo Funciona', ru: 'Как работает' },
+            footerProductLanguages: { pt: 'Idiomas', en: 'Languages', es: 'Idiomas', ru: 'Языки' },
+            footerProductPricing: { pt: 'Gratuito', en: 'Free', es: 'Gratuito', ru: 'Цены' },
+            footerSupportTitle: { pt: 'Suporte', en: 'Support', es: 'Soporte', ru: 'Поддержка' },
+            footerSupportWhatsapp: { pt: 'WhatsApp Bot', en: 'WhatsApp Bot', es: 'Bot de WhatsApp', ru: 'WhatsApp Бот' },
+            footerSupportEmail: { pt: 'Email Suporte', en: 'Email Support', es: 'Soporte por Email', ru: 'Email поддержка' },
+            footerTermsOfUse: { pt: 'Termos de Uso', en: 'Terms of Use', es: 'Términos de Uso', ru: 'Условия использования' },
+            footerPrivacyPolicy: { pt: 'Política de Privacidade', en: 'Privacy Policy', es: 'Política de Privacidad', ru: 'Политика конфиденциальности' },
+            footerContactTitle: { pt: 'Contato', en: 'Contact', es: 'Contacto', ru: 'Контакты' },
+            footerContactWhatsapp: { pt: '+1 (229) 999-9711', en: '+1 (229) 999-9711', es: '+1 (229) 999-9711', ru: '📱 +1 229 999 9711' },
+            footerContactPhoneBrazil: { pt: '+55 88 99788 9999', en: '+55 88 99788 9999', es: '+55 88 99788 9999', ru: '📱 +55 88 99788 9999' },
+            footerContactEmail: { pt: 'info@itcbr.io', en: 'info@itcbr.io', es: 'info@itcbr.io', ru: '📧 info@itcbr.io' },
+            footerContactWebsite: { pt: 'translate.expert', en: 'translate.expert', es: 'translate.expert', ru: '🌐 translate.expert' },
+            footerCopyright: { pt: '&copy; 2025 translate.expert. Todos os direitos reservados.', en: '&copy; 2025 translate.expert. All rights reserved.', es: '&copy; 2025 translate.expert. Todos os direitos reservados.', ru: '&copy; 2025 translate.expert. Все права защищены.' },
+            footerNewsletter: { pt: 'Assine nossa Newsletter e fique por dentro das novidades da translate.expert e do mundo dos Contatos Inteligentes.', en: 'Subscribe to our Newsletter and stay up-to-date with translate.expert news and the world of Intelligent Contacts.', es: 'Suscríbase a nuestro boletín y manténgase al tanto de las noticias de translate.expert y del mundo de los Contactos Inteligentes.', ru: 'Подпишитесь на нашу рассылку и будьте в курсе новостей translate.expert и мира умных контактов.' },
+            footerGreeting: { pt: 'Olá, sou o Contato Inteligente da translate.expert. Como posso te ajudar? Quero conhecer a plataforma Saber mais sobre os planos', en: 'Hello, I\'m translate.expert\'s Intelligent Contact. How can I help you? I want to learn about the platform Learn more about the plans', es: 'Hola, soy el Contacto Inteligente de translate.expert. ¿Cómo puedo ayudarte? Quiero conocer la plataforma Saber más sobre los planos', ru: 'Привет, я Умный Контакт от translate.expert. Чем могу помочь? Хочу узнать о платформе Узнать больше о планов' },
+        };
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Função para alternar o idioma
+        function changeLanguage(lang) {
+            if (!['pt', 'en', 'es', 'ru'].includes(lang)) {
+                console.error('Unsupported language:', lang);
+                return;
+            }
 
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+            // Salva a preferência de idioma no localStorage
+            localStorage.setItem('language', lang);
+
+            // Atualiza o atributo lang do HTML
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+            // Atualiza todos os elementos com o atributo data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[key] && translations[key][lang]) {
+                    element.innerHTML = translations[key][lang];
+                }
+            });
+
+            // Atualiza o texto do seletor de idioma no desktop
+            const currentLangDesktop = document.getElementById('current-lang-desktop');
+            if(currentLangDesktop) currentLangDesktop.textContent = lang.toUpperCase();
+
+            // Atualiza meta tags
+            document.title = translations.siteTitle[lang];
+            document.querySelector('meta[name="description"]').setAttribute('content', translations.siteDescription[lang]);
+        }
+
+        // Suaviza a rolagem para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
         });
 
-        // Contact Form Logic
-        function sendMessage(platform) {
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const message = document.getElementById('contact-message').value;
-            const errorMessage = document.getElementById('error-message');
+        // Observador para animações de fade-in ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-            if (!name || !email || !message) {
-                errorMessage.textContent = 'Por favor, preencha todos os campos.';
-                return;
-            }
-            errorMessage.textContent = '';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'all 0.6s ease-out'; // Garante que a transição é aplicada
+                    observer.unobserve(entry.target); // Para de observar após a animação
+                }
+            });
+        }, observerOptions);
 
-            // Phone number for WhatsApp and Telegram
-            const phone = '5548988762775';
+        // Aplica estilos iniciais e observa seções
+        document.addEventListener('DOMContentLoaded', () => {
+            // Define o idioma inicial (do localStorage ou padrão 'pt')
+            const savedLang = localStorage.getItem('language') || 'ru'; // Устанавливаем русский по умолчанию
+            changeLanguage(savedLang);
 
-            // Formatted message
-            const formattedMessage = `Olá!\n\nNome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`;
-            const encodedMessage = encodeURIComponent(formattedMessage);
-
-            let url = '';
-
-            if (platform === 'whatsapp') {
-                url = `https://wa.me/${phone}?text=${encodedMessage}`;
-            } else if (platform === 'telegram') {
-                // Using Telegram's share URL which is more reliable for pre-filling text
-                url = `https://t.me/share/url?url=Contato&text=${encodedMessage}`;
-            }
-
-            if (url) {
-                window.open(url, '_blank');
-            }
-        }
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                observer.observe(section);
+            });
+        });
     </script>
 </body>
 </html>
+�
