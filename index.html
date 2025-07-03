@@ -92,8 +92,6 @@
                 <a href="#" class="text-2xl font-bold text-white">🤖 <span class="text-primary-accent">translate.expert</span></a>
                 
                 <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHome">Início</a>
-                    <a href="#features" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFeatures">Recursos</a>
                     <a href="#how-it-works" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHowItWorks">Como Funciona</a>
                     <a href="#languages" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navLanguages">Idiomas</a>
                     <a href="#free" class="text-sm font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFree">Gratuito</a>
@@ -137,8 +135,6 @@
         </button>
 
         <nav class="flex flex-col items-center space-y-8">
-            <a @click="openMenu = false" href="#home" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHomeMobile">Início</a>
-            <a @click="openMenu = false" href="#features" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFeaturesMobile">Recursos</a>
             <a @click="openMenu = false" href="#how-it-works" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHowItWorksMobile">Como Funciona</a>
             <a @click="openMenu = false" href="#languages" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navLanguagesMobile">Idiomas</a>
             <a @click="openMenu = false" href="#free" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFreeMobile">Gratuito</a>
@@ -256,7 +252,7 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-16" data-key="languagesTitle">Idiomas Suportados</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langEN">🇺🇸 Inglês</div>
-                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langES">🇪🇸 Espanhol</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langES">�🇸 Espanhol</div>
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langFR">🇫🇷 Francês</div>
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langDE">🇩🇪 Alemão</div>
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langIT">🇮🇹 Italiano</div>
@@ -305,12 +301,11 @@
     <!-- Rodapé -->
     <footer class="bg-slate-950 border-t border-slate-800">
         <div class="container mx-auto px-4 sm:px-6 py-12">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 <!-- Seção de Produto -->
                 <div>
                     <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerProductTitle">Produto</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="#features" class="hover:text-primary-accent transition-colors" data-key="footerProductFeatures">Recursos</a></li>
                         <li><a href="#how-it-works" class="hover:text-primary-accent transition-colors" data-key="footerProductHowItWorks">Como Funciona</a></li>
                         <li><a href="#languages" class="hover:text-primary-accent transition-colors" data-key="footerProductLanguages">Idiomas</a></li>
                         <li><a href="#free" class="hover:text-primary-accent transition-colors" data-key="footerProductPricing">Gratuito</a></li>
@@ -330,7 +325,6 @@
                 <div>
                     <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerContactTitle">Contato</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="https://wa.me/12299999711" class="hover:text-primary-accent transition-colors flex items-center"><i class="fab fa-whatsapp mr-2"></i><span data-key="footerContactWhatsapp">+1 (229) 999-9711</span></a></li>
                         <li><a href="tel:+5588997889999" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-phone mr-2"></i><span data-key="footerContactPhoneBrazil">+55 88 99788 9999</span></a></li>
                         <li><a href="mailto:info@itcbr.io" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i><span data-key="footerContactEmail">info@itcbr.io</span></a></li>
                         <li><a href="#" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-globe mr-2"></i><span data-key="footerContactWebsite">translate.expert</span></a></li>
@@ -346,6 +340,18 @@
                             <i class="fa-brands fa-tiktok text-xl"></i><span class="sr-only">TikTok</span>
                         </a>
                     </div>
+                </div>
+                <!-- Секция информации о компании -->
+                <div>
+                    <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerAboutUsTitle">О компании</h4>
+                    <p class="text-sm text-slate-400" data-key="footerCompanyNameFull">ITCBR.IO LTDA</p>
+                    <p class="text-sm text-slate-400" data-key="footerCompanyCNPJ">CNPJ: 53.821.516/0001-63</p>
+                    <address class="mt-2 text-sm not-italic text-slate-400">
+                        <span data-key="footerCompanyAddressLine1">AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516</span><br>
+                        <span data-key="footerCompanyAddressLine2">EDSON QUEIROZ - CEP: 60.811-341</span><br>
+                        <span data-key="footerCompanyAddressLine3">FORTALEZA CEARÁ</span>
+                    </address>
+                    <p class="text-sm text-slate-400 mt-2"><a href="https://itcbr.io/Termos_de_Uso_ITCBRIO.html" class="hover:text-primary-accent transition-colors" data-key="footerTermsOfUseLink">Условия использования ITCBR.IO</a></p>
                 </div>
             </div>
             <hr class="border-slate-700 my-8">
@@ -401,7 +407,7 @@
             heroSubtitle: {
                 pt: 'Tradução instantânea de mensagens de voz em mais de 100 idiomas diretamente no WhatsApp. Totalmente grátis!',
                 en: 'Instant voice message translation in 100+ languages directly in WhatsApp. Completely free!',
-                es: 'Traducción instantánea de mensajes de voz en más de 100 idiomas directamente en WhatsApp. ¡Completamente gratis!',
+                es: 'Traducción instantánea de mensajes de voz em más de 100 idiomas directamente no WhatsApp. ¡Completamente gratis!',
                 ru: 'Мгновенный перевод голосовых сообщений на 100+ языках прямо в WhatsApp. Полностью бесплатно!'
             },
             heroCtaPrimary: {
@@ -436,7 +442,7 @@
             feature3Desc: {
                 pt: 'Suporta todos os idiomas populares do mundo com detecção automática de idioma.',
                 en: 'Supports all popular languages worldwide with automatic language detection.',
-                es: 'Compatible con todos los idiomas populares del mundo con detección automática de idioma.',
+                es: 'Compatible con todos los idiomas populares del mundo com detecção automática de idioma.',
                 ru: 'Поддерживаем все популярные языки мира с автоматическим определением языка'
             },
             feature4Title: { pt: 'Segurança', en: 'Security', es: 'Seguridad', ru: 'Безопасность' },
@@ -465,16 +471,16 @@
             step1Title: { pt: 'Adicione o bot', en: 'Add the bot', es: 'Agregue el bot', ru: 'Добавьте бота' },
             step1Desc: { pt: 'Envie uma mensagem para o número +1 (229) 999-9711 no WhatsApp.', en: 'Send a message to +1 (229) 999-9711 on WhatsApp.', es: 'Envíe un mensaje al número +1 (229) 999-9711 en WhatsApp.', ru: 'Отправьте сообщение на номер +1 229 999 9711 в WhatsApp' },
             step2Title: { pt: 'Grave uma mensagem de voz', en: 'Record a voice message', es: 'Grabe un mensaje de voz', ru: 'Запишите голосовое' },
-            step2Desc: { pt: 'Fale em qualquer idioma - o sistema detectará o idioma automaticamente.', en: 'Speak in any language - the system will automatically detect the language.', es: 'Hable en cualquier idioma - el sistema detectará el idioma automáticamente.', ru: 'Говорите на любом языке - система автоматически определит язык' },
+            step2Desc: { pt: 'Fale em qualquer idioma - o sistema detectará o idioma automaticamente.', en: 'Speak in any language - the system will automatically detect the language.', es: 'Hable em cualquier idioma - o sistema detectará o idioma automaticamente.', ru: 'Говорите на любом языке - система автоматически определит язык' },
             step3Title: { pt: 'Envie para o bot', en: 'Send to the bot', es: 'Envíe al bot', ru: 'Отправьте боту' },
-            step3Desc: { pt: 'Basta enviar a mensagem de voz como faria para um contato normal.', en: 'Simply send the voice message as you would to a regular contact.', es: 'Simplemente envíe el mensaje de voz como lo haría a un contacto normal.', ru: 'Просто отправьте голосовое сообщение как обычному контакту' },
+            step3Desc: { pt: 'Basta enviar a mensagem de voz como faria para um contato normal.', en: 'Simply send the voice message as you would to a regular contact.', es: 'Simplemente envíe el mensaje de voz como lo haría a um contato normal.', ru: 'Просто отправьте голосовое сообщение как обычному контакту' },
             step4Title: { pt: 'Obtenha o resultado', en: 'Get the result', es: 'Obtenga el resultado', ru: 'Получите результат' },
             step4Desc: { pt: 'Obtenha instantaneamente a transcrição e a tradução.', en: 'Instantly get transcription and translation.', es: 'Obtenga instantáneamente la transcripción y la traducción.', ru: 'Мгновенно получите расшифровку и перевод на русский язык' },
             // Seção de Idiomas
             languagesTitle: { pt: 'Idiomas Suportados', en: 'Supported Languages', es: 'Idiomas Soportados', ru: 'Поддерживаемые языки' },
             langEN: { pt: '🇺🇸 Inglês', en: '🇺🇸 English', es: '🇺🇸 Inglés', ru: '🇺🇸 Английский' },
             langES: { pt: '🇪🇸 Espanhol', en: '🇪🇸 Spanish', es: '🇪🇸 Español', ru: '🇪🇸 Испанский' },
-            langFR: { pt: '🇫🇷 Francês', en: '🇫🇷 French', es: '🇫🇷 Francés', ru: '�🇷 Французский' },
+            langFR: { pt: '🇫🇷 Francês', en: '🇫🇷 French', es: '🇫🇷 Francês', ru: '🇫🇷 Французский' },
             langDE: { pt: '🇩🇪 Alemão', en: '🇩🇪 German', es: '🇩🇪 Alemán', ru: '🇩🇪 Немецкий' },
             langIT: { pt: '🇮🇹 Italiano', en: '🇮🇹 Italian', es: '🇮🇹 Italiano', ru: '🇮🇹 Итальянский' },
             langPT: { pt: '🇵🇹 Português', en: '🇵🇹 Portuguese', es: '🇵🇹 Portugués', ru: '🇵🇹 Португальский' },
@@ -494,13 +500,13 @@
             pricingPrice: { pt: 'GRÁTIS', en: 'FREE', es: 'GRATIS', ru: 'БЕСПЛАТНО' },
             pricingSubtitle: { pt: 'para todos os usuários', en: 'for all users', es: 'para todos os usuários', ru: 'для всех пользователей' },
             pricingFeature1: { pt: 'Transcrições de voz precisas', en: 'Accurate voice transcriptions', es: 'Transcipción de voz precisa', ru: 'Точная расшифровка речи' },
-            pricingFeature2: { pt: 'Tradução para o idioma desejado', en: 'Translation to the desired language', es: 'Traducción al idioma deseado', ru: 'Перевод на русский' },
-            pricingFeature3: { pt: 'Mais de 100 idiomas suportados', en: '100+ languages supported', es: 'Más de 100 idiomas soportados', ru: '100+ языков' },
-            pricingFeature4: { pt: 'Resultados instantâneos', en: 'Instant results', es: 'Resultados instantáneos', ru: 'Мгновенный результат' },
+            pricingFeature2: { pt: 'Tradução para o idioma desejado', en: 'Translation to the desired language', es: 'Tradução al idioma desejado', ru: 'Перевод на русский' },
+            pricingFeature3: { pt: 'Mais de 100 idiomas suportados', en: '100+ languages supported', es: 'Más de 100 idiomas suportados', ru: '100+ языков' },
+            pricingFeature4: { pt: 'Resultados instantâneos', en: 'Instant results', es: 'Resultados instantâneos', ru: 'Мгновенный результат' },
             pricingFeature5: { pt: 'Processamento confidencial', en: 'Confidential processing', es: 'Procesamiento confidencial', ru: 'Конфиденциальность' },
             pricingFeature6: { pt: 'Suporte 24/7', en: '24/7 Support', es: 'Soporte 24/7', ru: 'Поддержка 24/7' },
             pricingCta: { pt: 'Começar a usar', en: 'Start using', es: 'Empezar a usar', ru: 'Начать использовать' },
-            pricingNote: { pt: 'Serviço totalmente gratuito, sem limitações ou taxas ocultas.', en: 'Completely free service, no limitations or hidden fees.', es: 'Servicio completamente gratuito, sin limitaciones ni tarifas ocultas.', ru: 'Полностью бесплатный сервис без ограничений' },
+            pricingNote: { pt: 'Serviço totalmente gratuito, sem limitações ou taxas ocultas.', en: 'Completely free service, no limitations or hidden fees.', es: 'Servicio completamente gratuito, sin limitações ni tarifas ocultas.', ru: 'Полностью бесплатный сервис без ограничений' },
             // Rodapé
             footerProductTitle: { pt: 'Produto', en: 'Product', es: 'Producto', ru: 'Продукт' },
             footerProductFeatures: { pt: 'Recursos', en: 'Features', es: 'Características', ru: 'Возможности' },
@@ -518,8 +524,16 @@
             footerContactEmail: { pt: 'info@itcbr.io', en: 'info@itcbr.io', es: 'info@itcbr.io', ru: '📧 info@itcbr.io' },
             footerContactWebsite: { pt: 'translate.expert', en: 'translate.expert', es: 'translate.expert', ru: '🌐 translate.expert' },
             footerCopyright: { pt: '&copy; 2025 translate.expert. Todos os direitos reservados.', en: '&copy; 2025 translate.expert. All rights reserved.', es: '&copy; 2025 translate.expert. Todos os direitos reservados.', ru: '&copy; 2025 translate.expert. Все права защищены.' },
-            footerNewsletter: { pt: 'Assine nossa Newsletter e fique por dentro das novidades da translate.expert e do mundo dos Contatos Inteligentes.', en: 'Subscribe to our Newsletter and stay up-to-date with translate.expert news and the world of Intelligent Contacts.', es: 'Suscríbase a nuestro boletín y manténgase al tanto de las noticias de translate.expert y del mundo de los Contactos Inteligentes.', ru: 'Подпишитесь на нашу рассылку и будьте в курсе новостей translate.expert и мира умных контактов.' },
+            footerNewsletter: { pt: 'Assine nossa Newsletter e fique por dentro das novidades da translate.expert e do mundo dos Contatos Inteligentes.', en: 'Subscribe to our Newsletter and stay up-to-date with translate.expert news and the world of Intelligent Contacts.', es: 'Suscríbase a nuestro boletín y manténgase al tanto de las noticias de translate.expert y do mundo dos Contatos Inteligentes.', ru: 'Подпишитесь на нашу рассылку и будьте в курсе новостей translate.expert и мира умных контактов.' },
             footerGreeting: { pt: 'Olá, sou o Contato Inteligente da translate.expert. Como posso te ajudar? Quero conhecer a plataforma Saber mais sobre os planos', en: 'Hello, I\'m translate.expert\'s Intelligent Contact. How can I help you? I want to learn about the platform Learn more about the plans', es: 'Hola, soy el Contacto Inteligente de translate.expert. ¿Cómo puedo ayudarte? Quiero conocer la plataforma Saber más sobre los planos', ru: 'Привет, я Умный Контакт от translate.expert. Чем могу помочь? Хочу узнать о платформе Узнать больше о планов' },
+            // Новые ключи для информации о компании
+            footerAboutUsTitle: { pt: 'Sobre Nós', en: 'About Us', es: 'Acerca de Nosotros', ru: 'О компании' },
+            footerCompanyNameFull: { pt: 'ITCBR.IO LTDA', en: 'ITCBR.IO LTDA', es: 'ITCBR.IO LTDA', ru: 'ITCBR.IO LTDA' },
+            footerCompanyCNPJ: { pt: 'CNPJ: 53.821.516/0001-63', en: 'CNPJ: 53.821.516/0001-63', es: 'CNPJ: 53.821.516/0001-63', ru: 'CNPJ: 53.821.516/0001-63' },
+            footerCompanyAddressLine1: { pt: 'AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516', en: 'WASHINGTON SOARES AVENUE, Nº 55, COMPL. 516', es: 'AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516', ru: 'AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516' },
+            footerCompanyAddressLine2: { pt: 'EDSON QUEIROZ - CEP: 60.811-341', en: 'EDSON QUEIROZ - ZIP: 60.811-341', es: 'EDSON QUEIROZ - C.P.: 60.811-341', ru: 'EDSON QUEIROZ - CEP: 60.811-341' },
+            footerCompanyAddressLine3: { pt: 'FORTALEZA CEARÁ', en: 'FORTALEZA CEARÁ', es: 'FORTALEZA CEARÁ', ru: 'FORTALEZA CEARÁ' },
+            footerTermsOfUseLink: { pt: 'Termos de Uso ITCBR.IO', en: 'ITCBR.IO Terms of Use', es: 'Términos de Uso ITCBR.IO', ru: 'Условия использования ITCBR.IO' }
         };
 
         // Função para alternar o idioma
