@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     
-                    <a href="https://wa.me/12299999711" class="hidden sm:inline-block cta-button-whatsapp text-white font-bold py-2.5 px-6 rounded-lg hover:bg-primary-darker transition-all duration-300" data-key="navTryNow">
+                    <a href="https://wa.me/12299999711" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-block cta-button-whatsapp text-white font-bold py-2.5 px-6 rounded-lg hover:bg-primary-darker transition-all duration-300" data-key="navTryNow">
                         Experimente Agora
                     </a>
                     <button @click="openMenu = true" class="lg:hidden text-white focus:outline-none z-50">
@@ -138,7 +138,7 @@
             <a @click="openMenu = false" href="#how-it-works" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navHowItWorksMobile">Como Funciona</a>
             <a @click="openMenu = false" href="#languages" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navLanguagesMobile">Idiomas</a>
             <a @click="openMenu = false" href="#free" class="text-2xl font-medium text-slate-300 hover:text-primary-accent transition-colors" data-key="navFreeMobile">Gratuito</a>
-            <a @click="openMenu = false" href="https://wa.me/12299999711" class="mt-8 cta-button-whatsapp text-white font-bold py-3 px-10 rounded-lg hover:bg-primary-darker transition-all duration-300" data-key="navTryNowMobile">
+            <a @click="openMenu = false" href="https://wa.me/12299999711" target="_blank" rel="noopener noreferrer" class="mt-8 cta-button-whatsapp text-white font-bold py-3 px-10 rounded-lg hover:bg-primary-darker transition-all duration-300" data-key="navTryNowMobile">
                 Experimente Agora
             </a>
         </nav>
@@ -168,13 +168,32 @@
                     Tradução instantânea de mensagens de voz em mais de 100 idiomas diretamente no WhatsApp. Totalmente grátis!
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://wa.me/12299999711" class="w-full sm:w-auto cta-button-whatsapp text-white font-bold py-3.5 px-8 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong animate-fade-in" data-key="heroCtaPrimary">
+                    <a href="https://wa.me/12299999711" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto cta-button-whatsapp text-white font-bold py-3.5 px-8 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong animate-fade-in" data-key="heroCtaPrimary">
                         Experimente Grátis
                     </a>
                 </div>
-                <div class="text-xl font-bold text-white mt-8 text-shadow-lg animate-fade-in" data-key="heroPhoneNumber">
+                <a href="https://wa.me/12299999711" target="_blank" rel="noopener noreferrer" class="text-xl font-bold text-white mt-8 text-shadow-lg animate-fade-in block" data-key="heroPhoneNumber">
                     📱 +1 (229) 999-9711
-                </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Nova Seção de Tradução para Português -->
+        <section id="portuguese-translation" class="py-16 sm:py-24 bg-slate-800 section-glow">
+            <div class="container mx-auto px-4 sm:px-6 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-8" data-key="portugueseTranslationTitle">Tradução para Português (Brasil)</h2>
+                <p class="text-lg text-slate-400 max-w-3xl mx-auto mb-8" data-key="portugueseTranslationSubtitle">
+                    Precisa de uma tradução perfeita para o português brasileiro? Nosso bot especializado garante que sua mensagem seja entregue com a nuance e o contexto cultural corretos.
+                </p>
+                <a href="https://wa.me/5588998188888" target="_blank" rel="noopener noreferrer" class="cta-button-whatsapp text-white font-bold py-3.5 px-8 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong" data-key="portugueseTranslationCta">
+                    Traduzir para Português (BR)
+                </a>
+                <a href="https://wa.me/5588998188888" target="_blank" rel="noopener noreferrer" class="text-xl font-bold text-white mt-8 text-shadow-lg block" data-key="portugueseTranslationPhoneNumber">
+                    📱 +55 88 99818 8888
+                </a>
+                <p class="text-slate-500 text-sm mt-4" data-key="portugueseTranslationNote">
+                    Grave uma mensagem de voz em qualquer idioma e o bot enviará o texto correto em português brasileiro.
+                </p>
             </div>
         </section>
 
@@ -252,7 +271,7 @@
                 <h2 class="text-3xl sm:text-4xl font-bold text-white text-center mb-16" data-key="languagesTitle">Idiomas Suportados</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langEN">🇺🇸 Inglês</div>
-                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langES">�🇸 Espanhol</div>
+                    <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langES">🇪🇸 Espanhol</div>
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langFR">🇫🇷 Francês</div>
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langDE">🇩🇪 Alemão</div>
                     <div class="bg-slate-800 p-4 rounded-lg text-center text-slate-300 font-medium language-item" data-key="langIT">🇮🇹 Italiano</div>
@@ -287,7 +306,7 @@
                         <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature5">Processamento confidencial</span></li>
                         <li class="flex items-center text-slate-300"><i class="fas fa-check-circle text-green-500 mr-3"></i><span data-key="pricingFeature6">Suporte 24/7</span></li>
                     </ul>
-                    <a href="https://wa.me/12299999711" class="cta-button-whatsapp text-white font-bold py-3.5 px-10 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong" data-key="pricingCta">
+                    <a href="https://wa.me/12299999711" target="_blank" rel="noopener noreferrer" class="cta-button-whatsapp text-white font-bold py-3.5 px-10 rounded-full text-lg hover:bg-primary-darker transition-all duration-300 transform hover:scale-105 shadow-primary-soft hover:shadow-primary-strong" data-key="pricingCta">
                         Começar a usar
                     </a>
                     <p class="text-slate-500 text-sm mt-4" data-key="pricingNote">
@@ -315,7 +334,7 @@
                 <div>
                     <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerSupportTitle">Suporte</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="https://wa.me/12299999711" class="hover:text-primary-accent transition-colors" data-key="footerSupportWhatsapp">WhatsApp Bot</a></li>
+                        <li><a href="https://wa.me/12299999711" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors" data-key="footerSupportWhatsapp">WhatsApp Bot</a></li>
                         <li><a href="mailto:info@itcbr.io" class="hover:text-primary-accent transition-colors" data-key="footerSupportEmail">Email Suporte</a></li>
                         <li><a href="https://itcbr.io/Termos_de_Uso_ITCBRIO.html" class="hover:text-primary-accent transition-colors" data-key="footerTermsOfUse">Termos de Uso</a></li>
                         <li><a href="#" class="hover:text-primary-accent transition-colors" data-key="footerPrivacyPolicy">Política de Privacidade</a></li>
@@ -325,9 +344,9 @@
                 <div>
                     <h4 class="font-semibold text-white tracking-wider mb-4" data-key="footerContactTitle">Contato</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
-                        <li><a href="tel:+5588997889999" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-phone mr-2"></i><span data-key="footerContactPhoneBrazil">+55 88 99788 9999</span></a></li>
+                        <li><a href="https://wa.me/5588997889999" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors flex items-center"><i class="fab fa-whatsapp mr-2"></i><span data-key="footerContactPhoneBrazil">+55 88 99788 9999</span></a></li>
                         <li><a href="mailto:info@itcbr.io" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i><span data-key="footerContactEmail">info@itcbr.io</span></a></li>
-                        <li><a href="#" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-globe mr-2"></i><span data-key="footerContactWebsite">translate.expert</span></a></li>
+                        <li><a href="https://translate.expert" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors flex items-center"><i class="fas fa-globe mr-2"></i><span data-key="footerContactWebsite">translate.expert</span></a></li>
                     </ul>
                     <div class="mt-4 flex space-x-4 text-slate-400">
                         <a href="https://www.instagram.com/itcbrio/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors">
@@ -351,7 +370,7 @@
                         <span data-key="footerCompanyAddressLine2">EDSON QUEIROZ - CEP: 60.811-341</span><br>
                         <span data-key="footerCompanyAddressLine3">FORTALEZA CEARÁ</span>
                     </address>
-                    <p class="text-sm text-slate-400 mt-2"><a href="https://itcbr.io/Termos_de_Uso_ITCBRIO.html" class="hover:text-primary-accent transition-colors" data-key="footerTermsOfUseLink">Условия использования ITCBR.IO</a></p>
+                    <p class="text-sm text-slate-400 mt-2"><a href="https://itcbr.io/Termos_de_Uso_ITCBRIO.html" target="_blank" rel="noopener noreferrer" class="hover:text-primary-accent transition-colors" data-key="footerTermsOfUseLink">Условия использования ITCBR.IO</a></p>
                 </div>
             </div>
             <hr class="border-slate-700 my-8">
@@ -422,6 +441,37 @@
                 es: '📱 +1 (229) 999-9711',
                 ru: '📱 +1 (229) 999-9711'
             },
+            // Nova Seção de Tradução para Português
+            portugueseTranslationTitle: {
+                pt: 'Tradução para Português (Brasil)',
+                en: 'Translation to Portuguese (Brazil)',
+                es: 'Traducción al Portugués (Brasil)',
+                ru: 'Перевод на португальский (Бразилия)'
+            },
+            portugueseTranslationSubtitle: {
+                pt: 'Precisa de uma tradução perfeita para o português brasileiro? Nosso bot especializado garante que sua mensagem seja entregue com a nuance e o contexto cultural corretos.',
+                en: 'Need a perfect translation to Brazilian Portuguese? Our specialized bot ensures your message is delivered with the correct nuance and cultural context.',
+                es: '¿Necesita una traducción perfecta al portugués brasileño? Nuestro bot especializado garantiza que su mensaje se entregue con el matiz y el contexto cultural correctos.',
+                ru: 'Нужен идеальный перевод на бразильский португальский? Наш специализированный бот гарантирует, что ваше сообщение будет передано с правильными нюансами и культурным контекстом.'
+            },
+            portugueseTranslationCta: {
+                pt: 'Traduzir para Português (BR)',
+                en: 'Translate to Portuguese (BR)',
+                es: 'Traducir al Portugués (BR)',
+                ru: 'Перевести на португальский (БР)'
+            },
+            portugueseTranslationPhoneNumber: {
+                pt: '📱 +55 88 99818 8888',
+                en: '📱 +55 88 99818 8888',
+                es: '📱 +55 88 99818 8888',
+                ru: '📱 +55 88 99818 8888'
+            },
+            portugueseTranslationNote: {
+                pt: 'Grave uma mensagem de voz em qualquer idioma e o bot enviará o texto correto em português brasileiro.',
+                en: 'Record a voice message in any language and the bot will send the correct text in Brazilian Portuguese.',
+                es: 'Grabe un mensaje de voz en cualquier idioma y el bot enviará el texto correcto en portugués brasileño.',
+                ru: 'Запишите голосовое сообщение на любом языке, и бот отправит правильный текст на бразильском португальском.'
+            },
             // Seção de Recursos
             featuresTitle: { pt: 'Por que nos escolher?', en: 'Why choose us?', es: '¿Por qué elegirnos?', ru: 'Почему выбирают нас?' },
             feature1Title: { pt: 'Transcrições Precisas', en: 'Accurate Transcriptions', es: 'Transcipción Precisa', ru: 'Точная расшифровка' },
@@ -478,11 +528,11 @@
             step4Desc: { pt: 'Obtenha instantaneamente a transcrição e a tradução.', en: 'Instantly get transcription and translation.', es: 'Obtenga instantáneamente la transcripción y la traducción.', ru: 'Мгновенно получите расшифровку и перевод на русский язык' },
             // Seção de Idiomas
             languagesTitle: { pt: 'Idiomas Suportados', en: 'Supported Languages', es: 'Idiomas Soportados', ru: 'Поддерживаемые языки' },
-            langEN: { pt: '🇺🇸 Inglês', en: '🇺🇸 English', es: '🇺🇸 Inglés', ru: '🇺🇸 Английский' },
+            langEN: { pt: '🇺🇸 Inglês', en: '🇺🇸 English', es: '🇺🇸 Inglês', ru: '🇺🇸 Английский' },
             langES: { pt: '🇪🇸 Espanhol', en: '🇪🇸 Spanish', es: '🇪🇸 Español', ru: '🇪🇸 Испанский' },
             langFR: { pt: '🇫🇷 Francês', en: '🇫🇷 French', es: '🇫🇷 Francês', ru: '🇫🇷 Французский' },
             langDE: { pt: '🇩🇪 Alemão', en: '🇩🇪 German', es: '🇩🇪 Alemán', ru: '🇩🇪 Немецкий' },
-            langIT: { pt: '🇮🇹 Italiano', en: '🇮🇹 Italian', es: '🇮🇹 Italiano', ru: '🇮🇹 Итальянский' },
+            langIT: { pt: '🇮🇹 Italiano', en: '🇮🇹 Italian', es: '�🇹 Italiano', ru: '🇮🇹 Итальянский' },
             langPT: { pt: '🇵🇹 Português', en: '🇵🇹 Portuguese', es: '🇵🇹 Portugués', ru: '🇵🇹 Португальский' },
             langZH: { pt: '🇨🇳 Chinês', en: '🇨🇳 Chinese', es: '🇨🇳 Chino', ru: '🇨🇳 Китайский' },
             langJA: { pt: '🇯🇵 Japonês', en: '🇯🇵 Japanese', es: '🇯🇵 Japonés', ru: '🇯🇵 Японский' },
@@ -502,7 +552,7 @@
             pricingFeature1: { pt: 'Transcrições de voz precisas', en: 'Accurate voice transcriptions', es: 'Transcipción de voz precisa', ru: 'Точная расшифровка речи' },
             pricingFeature2: { pt: 'Tradução para o idioma desejado', en: 'Translation to the desired language', es: 'Tradução al idioma desejado', ru: 'Перевод на русский' },
             pricingFeature3: { pt: 'Mais de 100 idiomas suportados', en: '100+ languages supported', es: 'Más de 100 idiomas suportados', ru: '100+ языков' },
-            pricingFeature4: { pt: 'Resultados instantâneos', en: 'Instant results', es: 'Resultados instantâneos', ru: 'Мгновенный результат' },
+            pricingFeature4: { pt: 'Resultados instantâneos', en: 'Instant results', es: 'Resultados instantáneos', ru: 'Мгновенный результат' },
             pricingFeature5: { pt: 'Processamento confidencial', en: 'Confidential processing', es: 'Procesamiento confidencial', ru: 'Конфиденциальность' },
             pricingFeature6: { pt: 'Suporte 24/7', en: '24/7 Support', es: 'Soporte 24/7', ru: 'Поддержка 24/7' },
             pricingCta: { pt: 'Começar a usar', en: 'Start using', es: 'Empezar a usar', ru: 'Начать использовать' },
@@ -533,7 +583,38 @@
             footerCompanyAddressLine1: { pt: 'AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516', en: 'WASHINGTON SOARES AVENUE, Nº 55, COMPL. 516', es: 'AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516', ru: 'AVENIDA WASHINGTON SOARES, Nº 55, COMPL. 516' },
             footerCompanyAddressLine2: { pt: 'EDSON QUEIROZ - CEP: 60.811-341', en: 'EDSON QUEIROZ - ZIP: 60.811-341', es: 'EDSON QUEIROZ - C.P.: 60.811-341', ru: 'EDSON QUEIROZ - CEP: 60.811-341' },
             footerCompanyAddressLine3: { pt: 'FORTALEZA CEARÁ', en: 'FORTALEZA CEARÁ', es: 'FORTALEZA CEARÁ', ru: 'FORTALEZA CEARÁ' },
-            footerTermsOfUseLink: { pt: 'Termos de Uso ITCBR.IO', en: 'ITCBR.IO Terms of Use', es: 'Términos de Uso ITCBR.IO', ru: 'Условия использования ITCBR.IO' }
+            footerTermsOfUseLink: { pt: 'Termos de Uso ITCBR.IO', en: 'ITCBR.IO Terms of Use', es: 'Términos de Uso ITCBR.IO', ru: 'Условия использования ITCBR.IO' },
+            // Новые ключи для португальского перевода
+            portugueseTranslationTitle: {
+                pt: 'Tradução para Português (Brasil)',
+                en: 'Translation to Portuguese (Brazil)',
+                es: 'Traducción al Portugués (Brasil)',
+                ru: 'Перевод на португальский (Бразилия)'
+            },
+            portugueseTranslationSubtitle: {
+                pt: 'Precisa de uma tradução perfeita para o português brasileiro? Nosso bot especializado garante que sua mensagem seja entregue com a nuance e o contexto cultural corretos.',
+                en: 'Need a perfect translation to Brazilian Portuguese? Our specialized bot ensures your message is delivered with the correct nuance and cultural context.',
+                es: '¿Necesita una traducción perfecta al portugués brasileño? Nuestro bot especializado garantiza que su mensaje se entregue con el matiz y el contexto cultural correctos.',
+                ru: 'Нужен идеальный перевод на бразильский португальский? Наш специализированный бот гарантирует, что ваше сообщение будет передано с правильными нюансами и культурным контекстом.'
+            },
+            portugueseTranslationCta: {
+                pt: 'Traduzir para Português (BR)',
+                en: 'Translate to Portuguese (BR)',
+                es: 'Traducir al Portugués (BR)',
+                ru: 'Перевести на португальский (БР)'
+            },
+            portugueseTranslationPhoneNumber: {
+                pt: '📱 +55 88 99818 8888',
+                en: '📱 +55 88 99818 8888',
+                es: '📱 +55 88 99818 8888',
+                ru: '📱 +55 88 99818 8888'
+            },
+            portugueseTranslationNote: {
+                pt: 'Grave uma mensagem de voz em qualquer idioma e o bot enviará o texto correto em português brasileiro.',
+                en: 'Record a voice message in any language and the bot will send the correct text in Brazilian Portuguese.',
+                es: 'Grabe un mensaje de voz en cualquier idioma y el bot enviará el texto correcto en portugués brasileño.',
+                ru: 'Запишите голосовое сообщение на любом языке, и бот отправит правильный текст на бразильском португальском.'
+            }
         };
 
         // Função para alternar o idioma
